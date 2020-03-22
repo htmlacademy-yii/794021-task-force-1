@@ -61,10 +61,10 @@ class Task
 
     public function getNextStatus($action): string
     {
-        if (! array_key_exists($action, $this->getNextActions())) {
-            return self::MappingActionToNextStatus[$action];
+        if (! in_array($action, $this->getNextActions())) {
+            throw new \Exception("Action '{$action}' cannot be made in the current status '{$this->getStatus()}'.");
         }
-        throw new \Exception("Action '{$action}' cannot be made in the current status.");
+        return self::MappingActionToNextStatus[$action];
     }
 
     public function getStatus()
