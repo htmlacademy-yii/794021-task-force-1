@@ -78,3 +78,8 @@ $task->dispatch(Task::ACTION_REJECT);
 assert($task->getStatus() === Task::STATUS_FAILED,
     'Dispatching "ACTION_REJECT" should change the status to "STATUS_FAILED"'
 );
+
+
+// Successful message
+
+echo('Tests successfully passed.');
