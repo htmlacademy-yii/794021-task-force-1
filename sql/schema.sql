@@ -13,12 +13,13 @@ CREATE TABLE tasks (
     state_id INT NOT NULL DEFAULT 0,
 
     customer_id INT NOT NULL,
-    contractor_id INT NULL,
+    contractor_id INT DEFAULT NULL,
 
     city_id INT DEFAULT NULL,
     address VARCHAR(255) DEFAULT NULL,
     latitude DECIMAL(10, 8) DEFAULT NULL,
     longitude DECIMAL(11, 8) DEFAULT NULL,
+    address_comment VARCHAR(255) DEFAULT NULL,
 
     budget INT DEFAULT NULL,
 
@@ -26,15 +27,6 @@ CREATE TABLE tasks (
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     FULLTEXT (title, text)
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
-
-CREATE TABLE contractors_applications (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    task_id INT NOT NULL,
-    applicant_id INT NULL
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
@@ -63,9 +55,9 @@ CREATE TABLE users (
     show_contacts_only_to_customer BOOLEAN DEFAULT 1,
     hide_profile BOOLEAN DEFAULT 1,
 
+    is_logged_in BOOLEAN DEFAULT 0,
     website_last_action_datetime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    is_logged_in BOOLEAN DEFAULT 0 # TODO
-
+    datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
@@ -88,6 +80,18 @@ CREATE TABLE users (
     https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
  */
 
+CREATE TABLE contractors_applications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    task_id INT NOT NULL,
+    applicant_id INT NULL,
+    text VARCHAR(255),
+    budget INT DEFAULT NULL, # TODO
+    datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+  )
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci
+;
+
 CREATE TABLE reviews (
     task_id INT NOT NULL,
     contractor_id int NOT NULL,
@@ -101,8 +105,20 @@ CREATE TABLE reviews (
   DEFAULT COLLATE utf8_general_ci
 ;
 
+CREATE TABLE task_chats (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    task_id INT NOT NULL,
+    sender_id int NOT NULL,
+    text VARCHAR(200) NOT NULL UNIQUE,
+    datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FULLTEXT(text)
+  )
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci
+;
+
 CREATE TABLE task_states (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL UNIQUE
   )
   DEFAULT CHARACTER SET utf8
@@ -110,34 +126,45 @@ CREATE TABLE task_states (
 ;
 
 CREATE TABLE task_categories (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(30) NOT NULL UNIQUE,
+    icon VARCHAR(255)
+  )
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci
+;
+
+CREATE TABLE favourite_contractors (
+    customer_id INT NOT NULL,
+    contractor_id INT NOT NULL,
+    CONSTRAINT id PRIMARY KEY(customer_id, contractor_id)
+  )
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci
+;
+
+CREATE TABLE contractors_occupations (
+    contractor_id INT NOT NULL,
+    occupation_id INT NOT NULL,
+    CONSTRAINT id PRIMARY KEY(contractor_id, occupation_id)
+  )
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci
+;
+
+CREATE TABLE occupations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL UNIQUE
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE users_specialties (
-    user_id INT NOT NULL,
-    specialty_id INT NOT NULL,
-    CONSTRAINT id PRIMARY KEY(user_id, specialty_id)
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
-
-CREATE TABLE contractor_specialties (
-    id INT PRIMARY KEY,
-    title VARCHAR(30) NOT NULL UNIQUE
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
-
-CREATE TABLE files (
-    id INT PRIMARY KEY,
+CREATE TABLE task_files (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    task_id INT NOT NULL,
     display_name VARCHAR(512) NOT NULL, # TODO
-    saved_name VARCHAR(50) NOT NULL UNIQUE # TODO
+    saved_name VARCHAR(60) NOT NULL UNIQUE # TODO
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
@@ -146,8 +173,17 @@ CREATE TABLE files (
 CREATE TABLE cities (
     id INT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
-    translit_title VARCHAR(100) UNIQUE,
-    country_id INT NOT NULL
+    latitude DECIMAL(10, 8) DEFAULT NULL,
+    longitude DECIMAL(11, 8) DEFAULT NULL,
+    country_id INT DEFAULT NULL
+  )
+  DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci
+;
+
+CREATE TABLE countries (
+    id INT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
