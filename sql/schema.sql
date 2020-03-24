@@ -20,7 +20,7 @@ CREATE TABLE tasks (
     latitude DECIMAL(10, 8) DEFAULT NULL,
     longitude DECIMAL(11, 8) DEFAULT NULL,
 
-    budget INT UNSIGNED DEFAULT NULL,
+    budget INT DEFAULT NULL,
 
     due_date DATETIME NOT NULL,
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -92,7 +92,7 @@ CREATE TABLE reviews (
     task_id INT NOT NULL,
     contractor_id int NOT NULL,
     customer_id int NOT NULL,
-    rating int UNSIGNED DEFAULT NULL,
+    rating int DEFAULT NULL,
     text VARCHAR(200) NOT NULL UNIQUE,
     FULLTEXT(text),
     CONSTRAINT id PRIMARY KEY (task_id, contractor_id, customer_id)
