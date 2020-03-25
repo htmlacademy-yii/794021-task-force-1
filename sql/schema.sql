@@ -26,7 +26,7 @@ CREATE TABLE tasks (
     due_date DATETIME NOT NULL,
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    FULLTEXT (title, text)
+    FULLTEXT (title, text, address, address_comment)
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
@@ -57,7 +57,8 @@ CREATE TABLE users (
 
     is_logged_in BOOLEAN DEFAULT 0,
     website_last_action_datetime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FULLTEXT (fullname, description)
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
