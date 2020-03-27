@@ -136,18 +136,20 @@ CREATE TABLE task_categories (
 ;
 
 CREATE TABLE favourite_contractors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL,
     contractor_id INT NOT NULL,
-    CONSTRAINT id PRIMARY KEY(customer_id, contractor_id)
+    UNIQUE KEY (customer_id, contractor_id)
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
 ;
 
 CREATE TABLE contractors_occupations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     contractor_id INT NOT NULL,
     occupation_id INT NOT NULL,
-    CONSTRAINT id PRIMARY KEY(contractor_id, occupation_id)
+    UNIQUE KEY(contractor_id, occupation_id)
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
