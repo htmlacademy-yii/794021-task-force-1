@@ -150,16 +150,7 @@ CREATE TABLE cities (
     id INT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     latitude DECIMAL(10, 8) DEFAULT NULL,
-    longitude DECIMAL(11, 8) DEFAULT NULL,
-    country_id INT DEFAULT NULL
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
-
-CREATE TABLE countries (
-    id INT PRIMARY KEY,
-    title VARCHAR(100) NOT NULL
+    longitude DECIMAL(11, 8) DEFAULT NULL
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
