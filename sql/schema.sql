@@ -4,34 +4,6 @@ CREATE DATABASE 794021_taskforce
 
 USE 794021_taskforce;
 
-CREATE TABLE tasks (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-
-    title VARCHAR(60) NOT NULL,
-    text VARCHAR(255),
-    category_id INT NOT NULL,
-    state_id INT NOT NULL DEFAULT 0,
-
-    customer_id INT NOT NULL,
-    contractor_id INT DEFAULT NULL,
-
-    city_id INT DEFAULT NULL,
-    address VARCHAR(255) DEFAULT NULL,
-    latitude DECIMAL(10, 8) DEFAULT NULL,
-    longitude DECIMAL(11, 8) DEFAULT NULL,
-    address_comment VARCHAR(255) DEFAULT NULL,
-
-    budget INT DEFAULT NULL,
-
-    due_date DATETIME NOT NULL,
-    datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    FULLTEXT (title, text, address, address_comment)
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
-
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fullname VARCHAR(255) NOT NULL,
