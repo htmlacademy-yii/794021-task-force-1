@@ -36,6 +36,7 @@ CREATE TABLE users (
   DEFAULT COLLATE utf8_general_ci
 ;
 
+CREATE TABLE tasks (
 /*  Email length
     Despite domain part may be up to 255 and name part up to 64 symbols,
     there is a restriction of the e-mailbox: 256, including '<' and '>' symbols,
