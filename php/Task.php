@@ -49,8 +49,44 @@ class Task
             throw new \Exception('Contractor cannot be a customer of the same task.');
         };
         $this->data['contractorId'] = $contractorId;
+
+        $this->bids = new Bids();
+        $this->chat = new Chat();
     }
 
+    public function addBid(Bid $bid)
+    {
+        $this->bids->addBid($bid);
+    }
+
+    public function cancel(User $initiator)
+    {
+        switch ($initiator->getId()) {
+            case $this->data['customerId']:
+                $this->cancelOrder();
+                break;
+            case $this->data['contractorId']:
+                $this->rejectOrder();
+                break;
+            default:
+                throw new \Exception('Task may be cancelled by customer or contractor');
+        }
+    }
+
+    protected function cancelOrder()
+    {
+    }
+
+    protected function rejectOrder()
+    {
+    }
+
+    public function chooseContractor(Contractor $contractor)
+    {
+        $this->data['contractorId'] = $contractor->getId();
+        $this->bid = $bids->findBid($contractor);
+        $this->bids = null;
+    }
 
     public function getNextActions($status = Null): array
     {
