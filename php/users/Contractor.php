@@ -1,6 +1,7 @@
 <?php
 
-namespace R794021;
+namespace R794021\Users;
+
 
 class Contractor extends AbstractUser
 {

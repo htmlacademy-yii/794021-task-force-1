@@ -1,6 +1,6 @@
 <?
 
-namespace R794021;
+namespace R794021\Users;
 
 abstract class AbstractUser
 {
