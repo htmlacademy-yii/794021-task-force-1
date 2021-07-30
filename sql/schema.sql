@@ -72,21 +72,24 @@ CREATE TABLE users (
   DEFAULT COLLATE utf8_general_ci
 ;
 
-/*  Email length
-    Despite domain part may be up to 255 and name part up to 64 symbols,
-    there is a restriction of the e-mailbox: 256, including '<' and '>' symbols,
+/*  Email length limit
+    Despite the fact 'Domain name after @' may be up to 255 symbols and
+    'Name before @ may be up to 64 symbols', there is an additional restriction:
+    e-mailbox lengthname <= 256, including '<' and '>' symbols,
     which gives 256 - 2 = 254 character-long email fields.
     https://blog.moonmail.io/what-is-the-maximum-length-of-a-valid-email-address-f712c6c4bc93
  */
 
-/*  People names' length
-    Name might be consisted of first, second (patronimic), and last.
-    Mastercard limits first and second up to 22.
-    My consideration is to 22 + 22 + 22 = 66,
-    multiplied to UTF's length of 4, plus 2 spaces between the parts.
-    Totel: (66 * 4) + 2 * 1 = 266.
-    I also know the following:
-    https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
+/*  Person name length limit
+    Name might be combined from first, second (patronimic), and last.
+    The Mastercard limits first and second up to 22.
+    This project consideration is: 22 + 22 + 22 = 66,
+    multiplied to UTF's length of 4 bytes,
+    plus 2 spaces between the parts.
+    Total are: (66 * 4) + 2 * 1 = 266.
+
+    Morover, see the following:
+      https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
  */
 
 CREATE TABLE tasks (
