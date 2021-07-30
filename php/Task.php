@@ -116,5 +116,11 @@ class Task
         }
 
         $this->data['status'] = self::MappingActionToNextStatus[$action] ?? new \Exception('Unknown action.');
+        $this->isBeingExecuted = true;
+    }
+
+    public function isInProgress()
+    {
+        return $this->isBeingExecuted;
     }
 }
