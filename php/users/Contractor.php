@@ -2,7 +2,7 @@
 
 namespace R794021;
 
-class Contractor extends User
+class Contractor extends AbstractUser
 {
     public function __construct()
     {
