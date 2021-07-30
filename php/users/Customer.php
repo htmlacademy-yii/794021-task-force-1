@@ -22,4 +22,15 @@ class Customer extends AbstractUser
     public function chooseContractor(Task $task, Contractor $contractor)
     {
     }
+
+    public function isContractor()
+    {
+        return true;
+    }
+
+    public function isCustomer()
+    {
+        return false;
+    }
+
 }

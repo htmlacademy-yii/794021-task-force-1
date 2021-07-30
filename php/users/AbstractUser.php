@@ -16,4 +16,8 @@ abstract class AbstractUser
     {
         return $this->fullname;
     }
+
+    abstract function isContractor();
+
+    abstract function isCustomer();
 }

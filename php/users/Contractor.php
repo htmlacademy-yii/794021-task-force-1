@@ -19,6 +19,16 @@ class Contractor extends User
         return $task->getBid($this);
     }
 
+    public function isContractor()
+    {
+        return true;
+    }
+
+    public function isCustomer()
+    {
+        return false;
+    }
+
     public function rejectTask(Task $task)
     {
     }
