@@ -17,7 +17,7 @@ class Bids
     public function findBid(Contractor $contractor)
     {
         return current(array_filter($this->bids, function ($bid) use ($contractor) {
-            $bid->getContractor() === $contractor;
+            return $bid->getContractor() === $contractor;
         }));
     }
 }
