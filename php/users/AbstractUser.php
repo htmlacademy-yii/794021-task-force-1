@@ -1,11 +1,17 @@
-<?
+<?php
 
 namespace R794021\Users;
+
 
 abstract class AbstractUser
 {
     protected $id;
     protected $fullname;
+
+    public function __construct($info)
+    {
+        $this->id = $info['id'] ?? NULL;
+    }
 
     public function getId()
     {
@@ -17,7 +23,7 @@ abstract class AbstractUser
         return $this->fullname;
     }
 
-    abstract function isContractor();
+    static abstract function isContractor();
 
-    abstract function isCustomer();
+    static abstract function isCustomer();
 }

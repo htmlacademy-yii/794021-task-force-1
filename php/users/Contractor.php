@@ -20,12 +20,12 @@ class Contractor extends AbstractUser
         return $task->getBid($this);
     }
 
-    public function isContractor()
+    static public function isContractor()
     {
         return true;
     }
 
-    public function isCustomer()
+    static public function isCustomer()
     {
         return false;
     }

@@ -1,11 +1,13 @@
 <?php
 
-namespace R794021;
+namespace R794021\Users;
+
 
 class Customer extends AbstractUser
 {
-    public function __construct()
+    public function __construct($info)
     {
+        parent::__construct($info);
         $this->favorites = [];
         $this->tasks = [];
     }
@@ -23,14 +25,13 @@ class Customer extends AbstractUser
     {
     }
 
-    public function isContractor()
-    {
-        return true;
-    }
-
-    public function isCustomer()
+    static public function isContractor()
     {
         return false;
     }
 
+    static public function isCustomer()
+    {
+        return true;
+    }
 }
