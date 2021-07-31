@@ -52,8 +52,6 @@ class Task
         $this->data['status'] = $status;
         $this->customer = $customer;
         $this->data['contractor'] = $contractor;
-        $this->bids = new Bids();
-        $this->chat = new Chat();
     }
 
     public function addBid(Bid $bid)
@@ -73,21 +71,6 @@ class Task
             default:
                 throw new \Exception('Task may be cancelled by customer or contractor');
         }
-    }
-
-    protected function cancelOrder()
-    {
-    }
-
-    protected function rejectOrder()
-    {
-    }
-
-    public function chooseContractor(Contractor $contractor)
-    {
-        $this->data['contractorId'] = $contractor->getId();
-        $this->bid = $bids->findBid($contractor);
-        $this->bids = null;
     }
 
     public function getCustomer()
