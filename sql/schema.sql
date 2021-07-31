@@ -4,7 +4,7 @@ CREATE DATABASE 794021_taskforce
 
 USE 794021_taskforce;
 
-CREATE TABLE cities (
+CREATE TABLE city (
     id INT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
     latitude DECIMAL(10, 8) DEFAULT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE cities (
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE task_states (
+CREATE TABLE task_state (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL UNIQUE
   )
@@ -22,7 +22,7 @@ CREATE TABLE task_states (
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE task_categories (
+CREATE TABLE task_category (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL UNIQUE,
     icon VARCHAR(255)
@@ -31,7 +31,7 @@ CREATE TABLE task_categories (
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE occupations (
+CREATE TABLE occupation (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL UNIQUE
   )
@@ -39,7 +39,7 @@ CREATE TABLE occupations (
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE users (
+CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fullname VARCHAR(255) NOT NULL,
     email VARCHAR(254) UNIQUE NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE users (
     description VARCHAR(255),
 
     city_id INT NOT NULL,
-      FOREIGN KEY (city_id) REFERENCES cities(id),
+      FOREIGN KEY (city_id) REFERENCES city(id),
 
     birthday DATE DEFAULT NULL,
     phone VARCHAR(25),
@@ -92,22 +92,22 @@ CREATE TABLE users (
       https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
  */
 
-CREATE TABLE tasks (
+CREATE TABLE task (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(60) NOT NULL,
     text VARCHAR(255),
 
     category_id INT NOT NULL,
-      FOREIGN KEY (category_id) REFERENCES task_categories(id),
+      FOREIGN KEY (category_id) REFERENCES task_category(id),
     state_id INT NOT NULL,
-      FOREIGN KEY (state_id) REFERENCES task_states(id),
+      FOREIGN KEY (state_id) REFERENCES task_state(id),
     customer_id INT NOT NULL,
-      FOREIGN KEY (customer_id) REFERENCES users (id),
+      FOREIGN KEY (customer_id) REFERENCES user (id),
     contractor_id INT DEFAULT NULL,
-      FOREIGN KEY (contractor_id) REFERENCES users (id),
+      FOREIGN KEY (contractor_id) REFERENCES user (id),
 
     city_id INT DEFAULT NULL,
-      FOREIGN KEY (city_id) REFERENCES cities (id),
+      FOREIGN KEY (city_id) REFERENCES city (id),
     address VARCHAR(255) DEFAULT NULL,
     latitude DECIMAL(10, 8) DEFAULT NULL,
     longitude DECIMAL(11, 8) DEFAULT NULL,
@@ -124,12 +124,12 @@ CREATE TABLE tasks (
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE contractors_applications (
+CREATE TABLE contractors_application (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task_id INT NOT NULL,
-      FOREIGN KEY (task_id) REFERENCES tasks(id),
+      FOREIGN KEY (task_id) REFERENCES task(id),
     applicant_id INT NULL,
-      FOREIGN KEY (applicant_id) REFERENCES users(id),
+      FOREIGN KEY (applicant_id) REFERENCES user(id),
     budget INT DEFAULT NULL, # TODO
     text VARCHAR(255),
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -138,14 +138,14 @@ CREATE TABLE contractors_applications (
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE reviews (
+CREATE TABLE review (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task_id INT NOT NULL,
-      FOREIGN KEY (task_id) REFERENCES tasks(id),
+      FOREIGN KEY (task_id) REFERENCES task(id),
     contractor_id int NOT NULL,
-      FOREIGN KEY (contractor_id) REFERENCES users(id),
+      FOREIGN KEY (contractor_id) REFERENCES user(id),
     customer_id int NOT NULL,
-      FOREIGN KEY (customer_id) REFERENCES users(id),
+      FOREIGN KEY (customer_id) REFERENCES user(id),
     rating int DEFAULT NULL,
     text VARCHAR(200) NOT NULL UNIQUE,
 
@@ -156,12 +156,12 @@ CREATE TABLE reviews (
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE messages (
+CREATE TABLE message (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task_id INT NOT NULL,
-      FOREIGN KEY (task_id) REFERENCES tasks(id),
+      FOREIGN KEY (task_id) REFERENCES task(id),
     sender_id int NOT NULL,
-      FOREIGN KEY (sender_id) REFERENCES users(id),
+      FOREIGN KEY (sender_id) REFERENCES user(id),
     text VARCHAR(200) NOT NULL,
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -171,24 +171,24 @@ CREATE TABLE messages (
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE favourite_contractors (
+CREATE TABLE favorite_contractor (
     id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT NOT NULL,
-      FOREIGN KEY (customer_id) REFERENCES users(id),
+      FOREIGN KEY (customer_id) REFERENCES user(id),
     contractor_id INT NOT NULL,
-      FOREIGN KEY (contractor_id) REFERENCES users(id),
+      FOREIGN KEY (contractor_id) REFERENCES user(id),
     UNIQUE KEY (customer_id, contractor_id)
   )
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE contractors_occupations (
+CREATE TABLE contractor_occupation (
     id INT AUTO_INCREMENT PRIMARY KEY,
     contractor_id INT NOT NULL,
-      FOREIGN KEY (contractor_id) REFERENCES users(id),
+      FOREIGN KEY (contractor_id) REFERENCES user(id),
     occupation_id INT NOT NULL,
-      FOREIGN KEY (occupation_id) REFERENCES occupations(id),
+      FOREIGN KEY (occupation_id) REFERENCES occupation(id),
 
     UNIQUE KEY(contractor_id, occupation_id)
   )
@@ -196,10 +196,10 @@ CREATE TABLE contractors_occupations (
   DEFAULT COLLATE utf8_general_ci
 ;
 
-CREATE TABLE task_files (
+CREATE TABLE task_file (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task_id INT NOT NULL,
-      FOREIGN KEY (task_id) REFERENCES tasks(id),
+      FOREIGN KEY (task_id) REFERENCES task(id),
     display_name VARCHAR(512) NOT NULL,
     saved_name VARCHAR(255) NOT NULL
   )
