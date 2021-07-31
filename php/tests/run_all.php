@@ -7,9 +7,12 @@
 // Initialisation
 ini_set('display_errors', 1);
 ini_set('assert.exception', 1);
-$zendAssertion = ini_get('zend.assertions');
-if ( $zendAssertion !== '1' ) {
-    throw new \Error("Php.ini should set 'zend.assertions' to string '1', but '$zendAssertion' is set");
+$zendAssertionSetting = ini_get('zend.assertions');
+if ( $zendAssertionSetting !== '1' ) {
+    throw new \Error(
+        "Php.ini should set 'zend.assertions' to string '1',
+        but '$zendAssertionSetting' is set"
+    );
 }
 
 // Include all matching files recursively
