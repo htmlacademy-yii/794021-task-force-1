@@ -1,26 +1,26 @@
-<?
+<?php
 namespace R794021\Actions;
-use \R794021\Users;
+
+use R794021\Tasks;
+use R794021\Users;
 
 
 abstract class AbstractAction
 {
-    private $internalCodename;
-    private $name;
+    static protected $name;
+    static protected $internalCodename;
 
-
-    abstract public function __construct();
 
     public function getName()
     {
-        return $this->name;
+        return static::$name;
     }
 
     public function getInternalCodename()
     {
-        return $this->internalCodename;
+        return static::$internalCodename;
     }
 
-    abstract public function isValid(Customer $customer, Contractor $contractor, AbstractUser $id);
+    abstract public function isValid($user, Tasks\Task $task);
 }
 

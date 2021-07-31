@@ -1,25 +1,23 @@
 <?php
 namespace R794021\Actions;
 
-use \R794021\Tasks;
-use \R794021\Users;
+use R794021\Tasks;
+use R794021\Users;
 
 
 class Cancel extends AbstractAction
 {
-    public function __construct()
-    {
-        $this->name = 'Отмена';
-        $this->internalCodename = 'cancel';
-    }
+    static protected $name = 'Отменить';
+    static protected $internalCodename = 'cancel';
 
-    public function isValid(AbstractUser $user, Task $task)
+    public function isValid($user, Tasks\Task $task)
     {
+        $userId = $user->getId();
         $customerId = $task->getCustomer()->getId();
-        if ( $customerId !== $user->getId() ) {
+        if ( $customerId !== $userId ) {
             return false;
         }
 
-        return ! $task->isInProgress();
+        return ! $task->isRunning();
     }
 }

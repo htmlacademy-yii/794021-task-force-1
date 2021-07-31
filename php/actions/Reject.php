@@ -1,21 +1,18 @@
 <?php
 namespace R794021\Actions;
 
-use \R794021\Tasks;
-use \R794021\Users;
+use R794021\Tasks;
+use R794021\Users;
 
 
 class Reject extends AbstractAction
 {
-    public function __construct()
-    {
-        $this->name = 'Отказаться';
-        $this->internalCodename = 'reject';
-    }
+    static protected $name = 'Отказаться';
+    static protected $internalCodename = 'reject';
 
-    public function isValid(AbstractUser $user, Task $task)
+    public function isValid($user, Tasks\Task $task)
     {
-        if ( ! $task->isInProgress()) {
+        if ( ! $task->isRunning()) {
             return false;
         }
 
