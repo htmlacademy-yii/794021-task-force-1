@@ -4,6 +4,8 @@
     The script runs all the test files with '.test.php' extension
     which reside in the specified folder
  */
+define ('TEST_FILES_FOLDER', '.');
+
 // Initialisation
 ini_set('display_errors', 1);
 ini_set('assert.exception', 1);
@@ -16,6 +18,7 @@ if ( $zendAssertionSetting !== '1' ) {
 }
 
 // Include all matching files recursively
+$directory = new \RecursiveDirectoryIterator(TEST_FILES_FOLDER);
 $iterator = new \RecursiveIteratorIterator($directory);
 $files = new \RegexIterator($iterator, '/^.+\.test.php$/i', RecursiveRegexIterator::GET_MATCH);
 
