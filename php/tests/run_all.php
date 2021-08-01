@@ -5,6 +5,7 @@
     which reside in the current folder and downwards recursively
  */
 
+declare(strict_types = 1);
 
 if ( $_SERVER['DOCUMENT_ROOT'] == '') {
     // Run under CLI
@@ -15,8 +16,8 @@ if ( $_SERVER['DOCUMENT_ROOT'] == '') {
     $eol = '<br>';
 }
 
-ini_set('display_errors', 1);
-ini_set('assert.exception', 1);
+ini_set('display_errors', '1');
+ini_set('assert.exception', '1');
 $zendAssertionSetting = ini_get('zend.assertions');
 if ( $zendAssertionSetting !== '1' ) {
     throw new \Error(
