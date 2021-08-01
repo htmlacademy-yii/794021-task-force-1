@@ -23,4 +23,3 @@ abstract class AbstractAction
 
     abstract public function isValid(Users\User $user, Tasks\Task $task);
 }
-
