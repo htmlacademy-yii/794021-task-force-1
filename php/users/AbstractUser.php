@@ -10,7 +10,10 @@ abstract class AbstractUser
 
     public function __construct($info)
     {
-        $this->id = $info['id'] ?? NULL;
+        if ( ! isset($info) && array_key_exists('id', $info) ) {
+            throw new \Error('Insufficient user information');
+        }
+        $this->id = $info['id'];
     }
 
     public function getId()
