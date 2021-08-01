@@ -5,11 +5,13 @@
     which reside in the current folder and downwards recursively
  */
 
-// Initialisation
+
 if ( $_SERVER['DOCUMENT_ROOT'] == '') {
+    // Run under CLI
     $eol = PHP_EOL;
     $_SERVER['DOCUMENT_ROOT'] = '.';
 } else {
+    // Run under web server
     $eol = '<br>';
 }
 
