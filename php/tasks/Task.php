@@ -49,28 +49,9 @@ class Task
             throw new \Error('Contractor cannot be a customer of the same task.');
         }
 
-        $this->data['status'] = $status;
+        $this->status = $status;
         $this->customer = $customer;
-        $this->data['contractor'] = $contractor;
-    }
-
-    public function addBid(Bid $bid)
-    {
-        $this->bids->addBid($bid);
-    }
-
-    public function cancel(User $initiator)
-    {
-        switch ($initiator->getId()) {
-            case $this->data['customerId']:
-                $this->cancelOrder();
-                break;
-            case $this->data['contractorId']:
-                $this->rejectOrder();
-                break;
-            default:
-                throw new \Error('Task may be cancelled by customer or contractor');
-        }
+        $this->contractor = $contractor;
     }
 
     public function getCustomer()
@@ -78,12 +59,16 @@ class Task
         return $this->customer;
     }
 
-    public function getNextActions($status = Null): array
+    public function getContractor()
+    {
+        return $this->contractor;
+    }
+
+    protected function getNextActions($status = Null): array
     {
         $status = $status ?? $this->getStatus();
         return self::MAP_STATUS_TO_NEXT_ACTION[$status] ?? new \Error('Unknown status.');
     }
-
 
     public function getNextStatus($action): string
     {
@@ -95,21 +80,11 @@ class Task
 
     public function getStatus()
     {
-        return $this->data['status'];
-    }
-
-
-    public function dispatch(string $action): void
-    {
-        if (! in_array($action, $this->getNextActions())) {
-            throw new \Error("Inappropriate action '{$action}' for the current status '{$this->getStatus()}' of the task.");
-        }
-
-        $this->data['status'] = self::MAP_ACTION_TO_NEXT_STATUS[$action] ?? new \Error('Unknown action.');
+        return $this->status;
     }
 
     public function isRunning()
     {
-        return $this->data['status'] === self::STATUS_RUNNING;
+        return $this->status === self::STATUS_RUNNING;
     }
 }
