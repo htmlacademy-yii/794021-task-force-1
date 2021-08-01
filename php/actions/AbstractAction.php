@@ -21,6 +21,6 @@ abstract class AbstractAction
         return static::$internalCodename;
     }
 
-    abstract public function isValid($user, Tasks\Task $task);
+    abstract public function isValid(Users\User $user, Tasks\Task $task);
 }
 
