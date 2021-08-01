@@ -2,11 +2,11 @@
 
 /*
     The script runs all the test files with '.test.php' extension
-    which reside in the specified folder
+    which reside from the current folder recursively
  */
-define ('TEST_FILES_FOLDER', '.');
 
 // Initialisation
+$_SERVER['DOCUMENT_ROOT'] = $_SERVER['DOCUMENT_ROOT'] == '' ? '.' : $_SERVER['DOCUMENT_ROOT'];
 ini_set('display_errors', 1);
 ini_set('assert.exception', 1);
 $zendAssertionSetting = ini_get('zend.assertions');
@@ -18,12 +18,12 @@ if ( $zendAssertionSetting !== '1' ) {
 }
 
 // Include all matching files recursively
-$directory = new \RecursiveDirectoryIterator(TEST_FILES_FOLDER);
+$directory = new \RecursiveDirectoryIterator(__DIR__);
 $iterator = new \RecursiveIteratorIterator($directory);
 $files = new \RegexIterator($iterator, '/^.+\.test.php$/i', RecursiveRegexIterator::GET_MATCH);
 
 foreach ($files as $file) {
-    echo "Start tests for: " . basename($file[0]) . "<br>";
+    echo "Start tests for: " . basename($file[0]) . "<br>" . PHP_EOL;
     include $file[0];
-    echo 'Passed<br><br>';
+    echo 'Passed<br><br>' . PHP_EOL . PHP_EOL;
 }
