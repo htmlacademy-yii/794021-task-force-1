@@ -15,12 +15,12 @@ abstract class AbstractUser
         $this->id = $info['id'];
     }
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    abstract static function isContractor();
+    abstract static function isContractor(): bool;
 
-    abstract static function isCustomer();
+    abstract static function isCustomer(): bool;
 }

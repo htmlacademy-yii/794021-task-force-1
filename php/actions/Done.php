@@ -10,7 +10,7 @@ class Done extends AbstractAction
     static protected $name = 'Выполнено';
     static protected $internalCodename = 'done';
 
-    public function isValid(Users\User $user, Tasks\Task $task)
+    public function isValid(Users\User $user, Tasks\Task $task): bool
     {
         if ( ! $task->isRunning() ) {
             return false;

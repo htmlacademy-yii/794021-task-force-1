@@ -54,12 +54,12 @@ class Task
         $this->contractor = $contractor;
     }
 
-    public function getCustomer()
+    public function getCustomer(): Users\User
     {
         return $this->customer;
     }
 
-    public function getContractor()
+    public function getContractor(): Users\User|Null
     {
         return $this->contractor;
     }
@@ -78,12 +78,12 @@ class Task
         return self::MAP_ACTION_TO_NEXT_STATUS[$action];
     }
 
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
 
-    public function isRunning()
+    public function isRunning(): bool
     {
         return $this->status === self::STATUS_RUNNING;
     }

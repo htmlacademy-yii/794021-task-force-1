@@ -11,15 +11,15 @@ abstract class AbstractAction
     static protected $internalCodename;
 
 
-    public function getName()
+    public function getName(): string
     {
         return static::$name;
     }
 
-    public function getInternalCodename()
+    public function getInternalCodename(): string
     {
         return static::$internalCodename;
     }
 
-    abstract public function isValid(Users\User $user, Tasks\Task $task);
+    abstract public function isValid(Users\User $user, Tasks\Task $task): bool;
 }

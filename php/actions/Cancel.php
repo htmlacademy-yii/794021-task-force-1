@@ -10,7 +10,7 @@ class Cancel extends AbstractAction
     static protected $name = 'Отменить';
     static protected $internalCodename = 'cancel';
 
-    public function isValid(Users\User $user, Tasks\Task $task)
+    public function isValid(Users\User $user, Tasks\Task $task): bool
     {
         $userId = $user->getId();
         $customerId = $task->getCustomer()->getId();

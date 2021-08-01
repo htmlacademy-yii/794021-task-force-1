@@ -10,7 +10,7 @@ class Reject extends AbstractAction
     static protected $name = 'Отказаться';
     static protected $internalCodename = 'reject';
 
-    public function isValid(Users\User $user, Tasks\Task $task)
+    public function isValid(Users\User $user, Tasks\Task $task): bool
     {
         if ( ! $task->isRunning() ) {
             return false;
