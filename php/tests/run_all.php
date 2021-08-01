@@ -6,7 +6,13 @@
  */
 
 // Initialisation
-$_SERVER['DOCUMENT_ROOT'] = $_SERVER['DOCUMENT_ROOT'] == '' ? '.' : $_SERVER['DOCUMENT_ROOT'];
+if ( $_SERVER['DOCUMENT_ROOT'] == '') {
+    $eol = PHP_EOL;
+    $_SERVER['DOCUMENT_ROOT'] = '.';
+} else {
+    $eol = '<br>';
+}
+
 ini_set('display_errors', 1);
 ini_set('assert.exception', 1);
 $zendAssertionSetting = ini_get('zend.assertions');
@@ -23,7 +29,8 @@ $iterator = new \RecursiveIteratorIterator($directory);
 $files = new \RegexIterator($iterator, '/^.+\.test.php$/i', RecursiveRegexIterator::GET_MATCH);
 
 foreach ($files as $file) {
-    echo "Start tests for: " . basename($file[0]) . "<br>" . PHP_EOL;
+    $filename = basename($file[0]);
+    echo "Start tests in: '$filename' $eol";
     include $file[0];
-    echo 'Passed<br><br>' . PHP_EOL . PHP_EOL;
+    echo 'Passed' . $eol;
 }
