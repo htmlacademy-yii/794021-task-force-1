@@ -20,8 +20,8 @@ assert($apply->getName() !== ' Откликнуться');
 /*
     Checking the internal codename of the Action
  */
-assert($apply->getInternalCodename() === 'bid');
-assert($apply->getInternalCodename() !== ' bid');
+assert($apply->getInternalCodename() === 'apply');
+assert($apply->getInternalCodename() !== ' apply');
 
 /*
     Conditions:

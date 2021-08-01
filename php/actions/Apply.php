@@ -8,7 +8,7 @@ use R794021\Users;
 class Apply extends AbstractAction
 {
     static protected $name = 'Откликнуться';
-    static protected $internalCodename = 'bid';
+    static protected $internalCodename = 'apply';
 
 
     public function isValid(Users\User $user, Tasks\Task $task): bool
