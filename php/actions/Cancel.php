@@ -18,6 +18,6 @@ class Cancel extends AbstractAction
             return false;
         }
 
-        return ! $task->isRunning();
+        return $task->getStatus() === Tasks\Task::STATUS_NEW;
     }
 }

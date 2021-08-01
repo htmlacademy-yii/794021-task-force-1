@@ -12,7 +12,11 @@ class Reject extends AbstractAction
 
     public function isValid($user, Tasks\Task $task)
     {
-        if ( ! $task->isRunning()) {
+        if ( ! $task->isRunning() ) {
+            return false;
+        }
+
+        if ( $task->getContractor() !== $user ) {
             return false;
         }
 

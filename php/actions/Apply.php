@@ -11,9 +11,9 @@ class Apply extends AbstractAction
     static protected $internalCodename = 'bid';
 
 
-    public function isValid($user, Tasks\Task $task)
+    public function isValid($user, Tasks\Task $task): bool
     {
-        if ($task->isRunning()) {
+        if ($task->getStatus() !== Tasks\Task::STATUS_NEW) {
             return false;
         }
 
