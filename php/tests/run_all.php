@@ -2,7 +2,7 @@
 
 /*
     The script runs all the test files with '.test.php' extension
-    which reside from the current folder recursively
+    which reside in the current folder and downwards recursively
  */
 
 // Initialisation
