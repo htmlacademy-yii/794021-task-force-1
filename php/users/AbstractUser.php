@@ -20,7 +20,7 @@ abstract class AbstractUser
         return $this->id;
     }
 
-    static abstract function isContractor();
+    abstract static function isContractor();
 
-    static abstract function isCustomer();
+    abstract static function isCustomer();
 }
