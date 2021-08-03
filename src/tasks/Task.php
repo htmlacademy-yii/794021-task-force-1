@@ -29,11 +29,11 @@ class Task
     public function __construct(string $status, Customer $customer, Contractor $contractor = Null)
     {
         if (! in_array($status, self::STATUSES)) {
-            throw new \ValueError('Unknown status.');
+            throw new \DomainException('Unknown task status.');
         }
 
         if ($contractor && $customer->getId() === $contractor->getId()) {
-            throw new \ValueError('Contractor cannot be a customer of the same task.');
+            throw new \DomainException('Contractor cannot be a customer of the same task.');
         }
 
         $this->status = $status;
@@ -67,7 +67,7 @@ class Task
                 return self::STATUS_FAILED;
 
             default:
-                throw new \ValueError('Invalid action');
+                throw new \DomainException('Unknown action type');
         }
     }
 
