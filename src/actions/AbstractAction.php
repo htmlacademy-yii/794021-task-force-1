@@ -1,8 +1,8 @@
 <?php
 namespace R794021\Actions;
 
-use R794021\Tasks;
-use R794021\Users;
+use R794021\Tasks\Task;
+use R794021\Users\User;
 
 
 abstract class AbstractAction
@@ -21,5 +21,5 @@ abstract class AbstractAction
         return static::$internalCodename;
     }
 
-    abstract public function isValid(Users\User $user, Tasks\Task $task): bool;
+    abstract public function isValid(User $user, Task $task): bool;
 }
