@@ -13,9 +13,8 @@ class Apply extends AbstractAction
 
     public function isValid(User $user, Task $task): bool
     {
-        if ($task->getStatus() !== Task::STATUS_NEW) {
-            return false;
-        }
-        return $user->isContractor();
+        return
+            $task->getStatus() === Task::STATUS_NEW &&
+            $user->isContractor();
     }
 }
