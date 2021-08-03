@@ -19,25 +19,19 @@ class Task
     public const STATUS_DONE = 'done';
     public const STATUS_FAILED = 'failed';
 
-    public const ACTION_CANCEL = 'cancel';
-    public const ACTION_APPLY = 'apply';
-    public const ACTION_CONFIRM_DONE = 'done';
-    public const ACTION_REJECT = 'reject';
-
-    protected const MAP_STATUS_TO_NEXT_ACTION = [
-        self::STATUS_CANCELLED => [],
-        self::STATUS_NEW => [self::ACTION_CANCEL, self::ACTION_APPLY],
-        self::STATUS_RUNNING => [self::ACTION_CONFIRM_DONE, self::ACTION_REJECT],
-        self::STATUS_DONE => [],
-        self::STATUS_FAILED => [],
+    public const STATUSES = [
+        self::STATUS_CANCELLED,
+        self::STATUS_NEW,
+        self::STATUS_RUNNING,
+        self::STATUS_DONE,
+        self::STATUS_FAILED,
     ];
 
     protected $data;
 
-
     public function __construct(string $status, Customer $customer, Contractor $contractor = Null)
     {
-        if (! array_key_exists($status, self::MAP_STATUS_TO_NEXT_ACTION)) {
+        if (! in_array($status, self::STATUSES)) {
             throw new \ValueError('Unknown status.');
         }
 
