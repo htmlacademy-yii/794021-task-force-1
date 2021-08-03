@@ -16,7 +16,7 @@ abstract class AbstractAction
         return static::$name;
     }
 
-    public function getInternalCodename(): string
+    public static function getInternalCodename(): string
     {
         return static::$internalCodename;
     }
