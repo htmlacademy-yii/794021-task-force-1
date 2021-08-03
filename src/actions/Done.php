@@ -12,11 +12,8 @@ class Done extends AbstractAction
 
     public function isValid(User $user, Task $task): bool
     {
-        if ( ! $task->isRunning() ) {
-            return false;
-        }
-
-        $customerId = $task->getCustomer()->getId();
-        return $user->getId() === $customerId;
+        return
+            $task->getCustomer() === $user &&
+            $task->isRunning();
     }
 }

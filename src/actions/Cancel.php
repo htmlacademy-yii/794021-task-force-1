@@ -12,12 +12,8 @@ class Cancel extends AbstractAction
 
     public function isValid(User $user, Task $task): bool
     {
-        $userId = $user->getId();
-        $customerId = $task->getCustomer()->getId();
-        if ( $customerId !== $userId ) {
-            return false;
-        }
-
-        return $task->getStatus() === Task::STATUS_NEW;
+        return
+            $task->getCustomer() === $user &&
+            $task->getStatus() === Task::STATUS_NEW;
     }
 }
