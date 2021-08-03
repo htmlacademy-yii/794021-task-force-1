@@ -5,8 +5,6 @@ use R794021\Tasks\Task;
 use R794021\Users\Contractor;
 use R794021\Users\Customer;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-
 $reject = new Reject();
 $customer1 = new Customer(CUSTOMER_1);
 $customer2 = new Customer(CUSTOMER_2);

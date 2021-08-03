@@ -3,8 +3,6 @@
 use R794021\Tasks;
 use R794021\Users;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-
 $customer = new Users\Customer(['id' => 12]);
 $contractor = new Users\Contractor(['id' => 24]);
 

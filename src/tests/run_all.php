@@ -6,16 +6,13 @@
  */
 
 declare(strict_types = 1);
-require_once 'init.php';
 
-if ( $_SERVER['DOCUMENT_ROOT'] == '') {
-    // Run under CLI
-    $eol = PHP_EOL;
-    $_SERVER['DOCUMENT_ROOT'] = '.';
-} else {
-    // Run under web server
-    $eol = '<br>';
+if ( $_SERVER['DOCUMENT_ROOT'] !== '') {
+    die('Tests must be run under CLI command: "composer test"');
 }
+
+require_once './vendor/autoload.php';
+require_once 'init.php';
 
 ini_set('display_errors', '1');
 ini_set('assert.exception', '1');
@@ -34,7 +31,7 @@ $files = new \RegexIterator($iterator, '/^.+Test.php$/i', RecursiveRegexIterator
 
 foreach ($files as $file) {
     $filename = basename($file[0]);
-    echo "Start tests in: '$filename' $eol";
+    echo "Start tests in: '$filename'" . PHP_EOL;
     include $file[0];
-    echo 'Passed' . $eol;
+    echo 'Passed' . PHP_EOL;
 }
