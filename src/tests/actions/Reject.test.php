@@ -8,7 +8,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 $apply = new Actions\Reject();
 $customer1 = new Users\Customer(CUSTOMER_1);
+$customer2 = new Users\Customer(CUSTOMER_2);
 $contractor1 = new Users\Contractor(CONTRACTOR_1);
+$contractor2 = new Users\Contractor(CONTRACTOR_2);
 
 /*
     Checking the name of the Action
