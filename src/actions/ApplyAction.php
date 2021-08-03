@@ -5,7 +5,7 @@ use R794021\Tasks\Task;
 use R794021\Users\User;
 
 
-class Apply extends AbstractAction implements Action
+class ApplyAction extends AbstractAction implements Action
 {
     static protected $name = 'Откликнуться';
     static protected $internalCodename = 'apply';

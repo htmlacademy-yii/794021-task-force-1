@@ -1,10 +1,10 @@
 <?php
 
-use R794021\Actions\Apply;
+use R794021\Actions\ApplyAction;
 use R794021\Tasks\Task;
 use R794021\Users\{Customer, Contractor};
 
-$apply = new Apply();
+$apply = new ApplyAction();
 $customer1 = new Customer(CUSTOMER_1);
 $customer2 = new Customer(CUSTOMER_2);
 $contractor1 = new Contractor(CONTRACTOR_1);

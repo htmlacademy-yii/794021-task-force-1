@@ -1,10 +1,10 @@
 <?php
 
-use R794021\Actions\Cancel;
+use R794021\Actions\CancelAction;
 use R794021\Tasks\Task;
 use R794021\Users\{Contractor, Customer};
 
-$cancel = new Cancel();
+$cancel = new CancelAction();
 $customer1 = new Customer(CUSTOMER_1);
 $contractor1 = new Contractor(CONTRACTOR_1);
 $customer2 = new Customer(CUSTOMER_2);

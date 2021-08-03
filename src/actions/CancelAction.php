@@ -5,7 +5,7 @@ use R794021\Tasks\Task;
 use R794021\Users\User;
 
 
-class Cancel extends AbstractAction implements Action
+class CancelAction extends AbstractAction implements Action
 {
     static protected $name = 'Отменить';
     static protected $internalCodename = 'cancel';

@@ -3,7 +3,8 @@
 namespace R794021\Tasks;
 
 use R794021\Users\{Contractor, Customer, User};
-use R794021\Actions\{Action, Apply, Cancel, Done, Reject};
+use R794021\Actions\
+    {Action, ApplyAction, CancelAction, DoneAction, RejectAction};
 
 
 /**
@@ -53,16 +54,16 @@ class Task
     public function getNextStatus(Action $action): string
     {
         switch (True) {
-            case $action instanceof Apply:
+            case $action instanceof ApplyAction:
                 return self::STATUS_RUNNING;
 
-            case $action instanceof Cancel:
+            case $action instanceof CancelAction:
                 return self::STATUS_CANCELLED;
 
-            case $action instanceof Done:
+            case $action instanceof DoneAction:
                 return self::STATUS_DONE;
 
-            case $action instanceof Reject:
+            case $action instanceof RejectAction:
                 return self::STATUS_FAILED;
 
             default:

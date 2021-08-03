@@ -1,10 +1,10 @@
 <?php
 
-use R794021\Actions\Reject;
+use R794021\Actions\RejectAction;
 use R794021\Tasks\Task;
 use R794021\Users\{Contractor, Customer};
 
-$reject = new Reject();
+$reject = new RejectAction();
 $customer1 = new Customer(CUSTOMER_1);
 $customer2 = new Customer(CUSTOMER_2);
 $contractor1 = new Contractor(CONTRACTOR_1);
