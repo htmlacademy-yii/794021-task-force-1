@@ -51,7 +51,7 @@ class Task
         return $this->contractor;
     }
 
-    public function getNextStatus(Action $action): string
+    public static function getNextStatus(Action $action): string
     {
         switch (True) {
             case $action instanceof ApplyAction:
