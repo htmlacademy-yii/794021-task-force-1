@@ -54,14 +54,6 @@ class Task
         return $this->contractor;
     }
 
-    protected function getNextActions($status = Null): array
-    {
-        $status = $status ?? $this->getStatus();
-        return
-            self::MAP_STATUS_TO_NEXT_ACTION[$status] ??
-            new \ValueError('Unknown status.');
-    }
-
     public function getNextStatus(Action $action): string
     {
         switch (True) {
