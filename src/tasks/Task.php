@@ -2,7 +2,9 @@
 
 namespace R794021\Tasks;
 
-use R794021\Users;
+use R794021\Users\Contractor;
+use R794021\Users\Customer;
+use R794021\Users\User;
 
 
 /**
@@ -39,7 +41,7 @@ class Task
     protected $data;
 
 
-    public function __construct($status, Users\Customer $customer, Users\Contractor $contractor = Null)
+    public function __construct($status, Customer $customer, Contractor $contractor = Null)
     {
         if (! array_key_exists($status, self::MAP_STATUS_TO_NEXT_ACTION)) {
             throw new \Error('Unknown status.');
@@ -54,12 +56,12 @@ class Task
         $this->contractor = $contractor;
     }
 
-    public function getCustomer(): Users\User
+    public function getCustomer(): User
     {
         return $this->customer;
     }
 
-    public function getContractor(): Users\User|Null
+    public function getContractor(): User|Null
     {
         return $this->contractor;
     }

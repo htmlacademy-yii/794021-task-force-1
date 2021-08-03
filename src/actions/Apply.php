@@ -1,8 +1,8 @@
 <?php
 namespace R794021\Actions;
 
-use R794021\Tasks;
-use R794021\Users;
+use R794021\Tasks\Task;
+use R794021\Users\User;
 
 
 class Apply extends AbstractAction
@@ -11,12 +11,11 @@ class Apply extends AbstractAction
     static protected $internalCodename = 'apply';
 
 
-    public function isValid(Users\User $user, Tasks\Task $task): bool
+    public function isValid(User $user, Task $task): bool
     {
-        if ($task->getStatus() !== Tasks\Task::STATUS_NEW) {
+        if ($task->getStatus() !== Task::STATUS_NEW) {
             return false;
         }
-
         return $user->isContractor();
     }
 }

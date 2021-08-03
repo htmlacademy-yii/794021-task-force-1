@@ -1,8 +1,8 @@
 <?php
 namespace R794021\Actions;
 
-use R794021\Tasks;
-use R794021\Users;
+use R794021\Tasks\Task;
+use R794021\Users\User;
 
 
 class Cancel extends AbstractAction
@@ -10,7 +10,7 @@ class Cancel extends AbstractAction
     static protected $name = 'Отменить';
     static protected $internalCodename = 'cancel';
 
-    public function isValid(Users\User $user, Tasks\Task $task): bool
+    public function isValid(User $user, Task $task): bool
     {
         $userId = $user->getId();
         $customerId = $task->getCustomer()->getId();
@@ -18,6 +18,6 @@ class Cancel extends AbstractAction
             return false;
         }
 
-        return $task->getStatus() === Tasks\Task::STATUS_NEW;
+        return $task->getStatus() === Task::STATUS_NEW;
     }
 }

@@ -1,8 +1,8 @@
 <?php
 namespace R794021\Actions;
 
-use R794021\Tasks;
-use R794021\Users;
+use R794021\Tasks\Task;
+use R794021\Users\User;
 
 
 class Done extends AbstractAction
@@ -10,7 +10,7 @@ class Done extends AbstractAction
     static protected $name = 'Выполнено';
     static protected $internalCodename = 'done';
 
-    public function isValid(Users\User $user, Tasks\Task $task): bool
+    public function isValid(User $user, Task $task): bool
     {
         if ( ! $task->isRunning() ) {
             return false;
