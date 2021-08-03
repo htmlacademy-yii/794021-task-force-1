@@ -5,6 +5,7 @@ namespace R794021\Tasks;
 use R794021\Users\Contractor;
 use R794021\Users\Customer;
 use R794021\Users\User;
+use R794021\Actions\{Action, Apply, Cancel, Done, Reject};
 
 
 /**
@@ -31,17 +32,10 @@ class Task
         self::STATUS_FAILED => [],
     ];
 
-    protected const MAP_ACTION_TO_NEXT_STATUS = [
-        self::ACTION_CANCEL => self::STATUS_CANCELLED,
-        self::ACTION_APPLY => self::STATUS_RUNNING,
-        self::ACTION_CONFIRM_DONE => self::STATUS_DONE,
-        self::ACTION_REJECT => self::STATUS_FAILED,
-    ];
-
     protected $data;
 
 
-    public function __construct($status, Customer $customer, Contractor $contractor = Null)
+    public function __construct(string $status, Customer $customer, Contractor $contractor = Null)
     {
         if (! array_key_exists($status, self::MAP_STATUS_TO_NEXT_ACTION)) {
             throw new \ValueError('Unknown status.');
@@ -74,12 +68,24 @@ class Task
             new \ValueError('Unknown status.');
     }
 
-    public function getNextStatus($action): string
+    public function getNextStatus(Action $action): string
     {
-        if (! in_array($action, $this->getNextActions())) {
-            throw new \ValueError("Action '{$action}' cannot be made in the current status '{$this->getStatus()}'.");
+        switch (True) {
+            case $action instanceof Apply:
+                return self::STATUS_RUNNING;
+
+            case $action instanceof Cancel:
+                return self::STATUS_CANCELLED;
+
+            case $action instanceof Done:
+                return self::STATUS_DONE;
+
+            case $action instanceof Reject:
+                return self::STATUS_FAILED;
+
+            default:
+                throw new \ValueError('Invalid action');
         }
-        return self::MAP_ACTION_TO_NEXT_STATUS[$action];
     }
 
     public function getStatus(): string
