@@ -2,8 +2,7 @@
 
 use R794021\Actions\Apply;
 use R794021\Tasks\Task;
-use R794021\Users\Customer;
-use R794021\Users\Contractor;
+use R794021\Users\{Customer, Contractor};
 
 $apply = new Apply();
 $customer1 = new Customer(CUSTOMER_1);
