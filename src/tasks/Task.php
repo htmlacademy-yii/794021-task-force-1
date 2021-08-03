@@ -44,11 +44,11 @@ class Task
     public function __construct($status, Customer $customer, Contractor $contractor = Null)
     {
         if (! array_key_exists($status, self::MAP_STATUS_TO_NEXT_ACTION)) {
-            throw new \Error('Unknown status.');
+            throw new \ValueError('Unknown status.');
         }
 
         if ($contractor && $customer->getId() === $contractor->getId()) {
-            throw new \Error('Contractor cannot be a customer of the same task.');
+            throw new \ValueError('Contractor cannot be a customer of the same task.');
         }
 
         $this->status = $status;
@@ -69,13 +69,15 @@ class Task
     protected function getNextActions($status = Null): array
     {
         $status = $status ?? $this->getStatus();
-        return self::MAP_STATUS_TO_NEXT_ACTION[$status] ?? new \Error('Unknown status.');
+        return
+            self::MAP_STATUS_TO_NEXT_ACTION[$status] ??
+            new \ValueError('Unknown status.');
     }
 
     public function getNextStatus($action): string
     {
         if (! in_array($action, $this->getNextActions())) {
-            throw new \Error("Action '{$action}' cannot be made in the current status '{$this->getStatus()}'.");
+            throw new \ValueError("Action '{$action}' cannot be made in the current status '{$this->getStatus()}'.");
         }
         return self::MAP_ACTION_TO_NEXT_STATUS[$action];
     }
