@@ -9,35 +9,23 @@ CREATE TABLE city (
     title VARCHAR(100) NOT NULL,
     latitude DECIMAL(10, 8) DEFAULT NULL,
     longitude DECIMAL(11, 8) DEFAULT NULL
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 CREATE TABLE task_state (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL UNIQUE
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 CREATE TABLE task_category (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL UNIQUE,
     icon VARCHAR(255)
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 CREATE TABLE occupation (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL UNIQUE
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,10 +55,7 @@ CREATE TABLE user (
     website_last_action_datetime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FULLTEXT (fullname, description)
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 /*  Email length limit
     Despite the fact 'Domain name after @' may be up to 255 symbols and
@@ -91,7 +76,6 @@ CREATE TABLE user (
     Morover, see the following:
       https://www.kalzumeus.com/2010/06/17/falsehoods-programmers-believe-about-names/
  */
-
 CREATE TABLE task (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(60) NOT NULL,
@@ -119,10 +103,7 @@ CREATE TABLE task (
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     FULLTEXT (title, text, address, address_comment)
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 CREATE TABLE contractors_application (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -133,10 +114,7 @@ CREATE TABLE contractors_application (
     budget INT DEFAULT NULL, # TODO
     text VARCHAR(255),
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 CREATE TABLE review (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -151,10 +129,7 @@ CREATE TABLE review (
 
     FULLTEXT(text),
     UNIQUE KEY (task_id, contractor_id, customer_id)
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 CREATE TABLE message (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -166,10 +141,7 @@ CREATE TABLE message (
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     FULLTEXT(text)
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 CREATE TABLE favorite_contractor (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -178,10 +150,7 @@ CREATE TABLE favorite_contractor (
     contractor_id INT NOT NULL,
       FOREIGN KEY (contractor_id) REFERENCES user(id),
     UNIQUE KEY (customer_id, contractor_id)
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 CREATE TABLE contractor_occupation (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -191,10 +160,7 @@ CREATE TABLE contractor_occupation (
       FOREIGN KEY (occupation_id) REFERENCES occupation(id),
 
     UNIQUE KEY(contractor_id, occupation_id)
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
 
 CREATE TABLE task_file (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -202,7 +168,4 @@ CREATE TABLE task_file (
       FOREIGN KEY (task_id) REFERENCES task(id),
     display_name VARCHAR(512) NOT NULL,
     saved_name VARCHAR(255) NOT NULL
-  )
-  DEFAULT CHARACTER SET utf8
-  DEFAULT COLLATE utf8_general_ci
-;
+);
