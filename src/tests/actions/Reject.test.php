@@ -7,8 +7,8 @@ use R794021\Users;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 $apply = new Actions\Reject();
-$customer1 = new Users\Customer(['id' => 12]);
-$contractor1 = new Users\Contractor(['id' => 24]);
+$customer1 = new Users\Customer(CUSTOMER_1);
+$contractor1 = new Users\Contractor(CONTRACTOR_1);
 
 /*
     Checking the name of the Action

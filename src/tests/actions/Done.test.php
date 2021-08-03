@@ -7,10 +7,10 @@ use R794021\Users;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 $action = new Actions\Done();
-$customer1 = new Users\Customer(['id' => 12]);
-$customer2 = new Users\Customer(['id' => 13]);
-$contractor1 = new Users\Contractor(['id' => 24]);
-$contractor2 = new Users\Contractor(['id' => 26]);
+$customer1 = new Users\Customer(CUSTOMER_1);
+$customer2 = new Users\Customer(CUSTOMER_2);
+$contractor1 = new Users\Contractor(CONTRACTOR_1);
+$contractor2 = new Users\Contractor(CONTRACTOR_2);
 
 /*
     Checking the name of the Action
