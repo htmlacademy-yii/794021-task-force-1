@@ -5,7 +5,7 @@ use R794021\Tasks\Task;
 use R794021\Users\User;
 
 
-class Done extends AbstractAction
+class Done extends AbstractAction implements Action
 {
     static protected $name = 'Выполнено';
     static protected $internalCodename = 'done';
