@@ -27,8 +27,6 @@ class Task
         self::STATUS_FAILED,
     ];
 
-    protected $data;
-
     public function __construct(string $status, Customer $customer, Contractor $contractor = Null)
     {
         if (! in_array($status, self::STATUSES)) {
