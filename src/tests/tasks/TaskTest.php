@@ -3,8 +3,8 @@
 use R794021\Tasks;
 use R794021\Users;
 
-$customer = new Users\Customer(['id' => 12]);
-$contractor = new Users\Contractor(['id' => 24]);
+$customer = new Users\Customer(CUSTOMER_1);
+$contractor = new Users\Contractor(CONTRACTOR_1);
 
 // Testing of 'NEW' status
 $task = new Tasks\Task(Tasks\Task::STATUS_NEW, $customer);
@@ -48,3 +48,5 @@ assert(! $task->isRunning());
 assert($task->getCustomer() == $customer);
 assert($task->getContractor() == $contractor);
 assert($task->getCustomer() !== $task->getContractor());
+
+
