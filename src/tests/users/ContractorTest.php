@@ -1,5 +1,5 @@
 <?php
-namespace R794021\Users;
+use R794021\Users\Contractor;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
