@@ -6,6 +6,7 @@
  */
 
 declare(strict_types = 1);
+require_once 'init.php';
 
 if ( $_SERVER['DOCUMENT_ROOT'] == '') {
     // Run under CLI
