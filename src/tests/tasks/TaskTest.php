@@ -11,8 +11,6 @@ $contractor = new Contractor(CONTRACTOR_1);
 // Testing of 'NEW' status
 $task = new Task(Task::STATUS_NEW, $customer);
 assert($task->getStatus() === Task::STATUS_NEW);
-assert($task->getNextStatus(new CancelAction()) === Task::STATUS_CANCELLED);
-assert($task->getNextStatus(new ApplyAction()) === Task::STATUS_RUNNING);
 assert(! $task->isRunning());
 assert($task->getCustomer() == $customer);
 assert(! $task->getContractor());
@@ -29,8 +27,6 @@ assert($task->getCustomer() !== $task->getContractor());
 $task = new Task(Task::STATUS_RUNNING, $customer, $contractor);
 assert($task->getStatus() === Task::STATUS_RUNNING);
 assert($task->isRunning());
-assert($task->getNextStatus(new DoneAction()) === Task::STATUS_DONE);
-assert($task->getNextStatus(new RejectAction()) === Task::STATUS_FAILED);
 assert($task->getCustomer() == $customer);
 assert($task->getContractor() == $contractor);
 assert($task->getCustomer() !== $task->getContractor());
@@ -50,3 +46,9 @@ assert(! $task->isRunning());
 assert($task->getCustomer() == $customer);
 assert($task->getContractor() == $contractor);
 assert($task->getCustomer() !== $task->getContractor());
+
+// Testing of 'getNextStatus' status
+assert($task->getNextStatus(new ApplyAction()) === Task::STATUS_RUNNING);
+assert($task->getNextStatus(new CancelAction()) === Task::STATUS_CANCELLED);
+assert($task->getNextStatus(new DoneAction()) === Task::STATUS_DONE);
+assert($task->getNextStatus(new RejectAction()) === Task::STATUS_FAILED);
