@@ -2,7 +2,7 @@
 
 use R794021\Action\RejectAction;
 use R794021\Task\Task;
-use R794021\Users\{Contractor, Customer};
+use R794021\User\{Contractor, Customer};
 
 $reject = new RejectAction();
 $customer1 = new Customer(CUSTOMER_1);

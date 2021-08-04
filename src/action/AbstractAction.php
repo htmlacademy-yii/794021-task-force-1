@@ -2,7 +2,7 @@
 namespace R794021\Action;
 
 use R794021\Task\Task;
-use R794021\Users\User;
+use R794021\User\User;
 
 
 abstract class AbstractAction

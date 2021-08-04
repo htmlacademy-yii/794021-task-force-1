@@ -1,5 +1,5 @@
 <?php
-use R794021\Users\{Contractor, User};
+use R794021\User\{Contractor, User};
 
 $contractor = new Contractor(CONTRACTOR_1);
 assert($contractor instanceof User);

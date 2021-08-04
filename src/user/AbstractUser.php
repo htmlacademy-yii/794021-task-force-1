@@ -1,6 +1,6 @@
 <?php
 
-namespace R794021\Users;
+namespace R794021\User;
 
 
 abstract class AbstractUser

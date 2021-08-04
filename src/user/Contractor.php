@@ -1,17 +1,17 @@
 <?php
 
-namespace R794021\Users;
+namespace R794021\User;
 
 
-class Customer extends AbstractUser implements User
+class Contractor extends AbstractUser implements User
 {
     static public function isContractor(): bool
     {
-        return false;
+        return true;
     }
 
     static public function isCustomer(): bool
     {
-        return true;
+        return false;
     }
 }

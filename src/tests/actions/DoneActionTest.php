@@ -2,7 +2,7 @@
 
 use R794021\Action\DoneAction;
 use R794021\Task\Task;
-use R794021\Users\{Contractor, Customer};
+use R794021\User\{Contractor, Customer};
 
 $done = new DoneAction();
 $customer1 = new Customer(CUSTOMER_1);

@@ -1,7 +1,7 @@
 <?php
 
 use R794021\Task\Task;
-use R794021\Users\{Contractor, Customer};
+use R794021\User\{Contractor, Customer};
 use R794021\Action\{ApplyAction, CancelAction, DoneAction, RejectAction};
 
 
