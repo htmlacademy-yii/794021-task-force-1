@@ -26,7 +26,7 @@ class Task
     public function __construct(
         string $status,
         Customer $customer,
-        Contractor $contractor = Null)
+        Contractor $contractor = null)
     {
         if ( ! in_array($status, self::STATUSES) ) {
             throw new DataDomainException(
@@ -50,7 +50,7 @@ class Task
         return $this->customer;
     }
 
-    public function getContractor(): User|Null
+    public function getContractor(): User|null
     {
         return $this->contractor;
     }
