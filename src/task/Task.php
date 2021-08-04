@@ -55,7 +55,7 @@ class Task
 
     public static function getNextStatus(Action $action): string
     {
-        switch (True) {
+        switch (true) {
             case $action instanceof ApplyAction:
                 return self::STATUS_RUNNING;
 
