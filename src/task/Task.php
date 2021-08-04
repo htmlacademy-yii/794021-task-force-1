@@ -29,7 +29,9 @@ class Task
         Contractor $contractor = Null)
     {
         if ( ! in_array($status, self::STATUSES) ) {
-            throw new DataDomainException('Task status should be one of the list');
+            throw new DataDomainException(
+                'Task status should be one of the list'
+            );
         }
 
         if ( $contractor && $customer->getId() === $contractor->getId() ) {
