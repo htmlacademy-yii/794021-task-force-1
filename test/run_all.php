@@ -7,7 +7,7 @@
 
 declare(strict_types = 1);
 
-if ( $_SERVER['DOCUMENT_ROOT'] !== '') {
+if ( $_SERVER['DOCUMENT_ROOT'] !== '' ) {
     die('Tests must be run under CLI command: "composer test"');
 }
 

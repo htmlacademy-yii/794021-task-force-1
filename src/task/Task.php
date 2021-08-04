@@ -28,11 +28,11 @@ class Task
         Customer $customer,
         Contractor $contractor = Null)
     {
-        if (! in_array($status, self::STATUSES)) {
+        if ( ! in_array($status, self::STATUSES) ) {
             throw new DataDomainException('Task status should be one of the list');
         }
 
-        if ($contractor && $customer->getId() === $contractor->getId()) {
+        if ( $contractor && $customer->getId() === $contractor->getId() ) {
             throw new DataDomainException(
                 'Contractor cannot be a customer of the same task'
             );
