@@ -5,6 +5,7 @@ namespace R794021\Task;
 use R794021\User\{Contractor, Customer, User};
 use R794021\Action\
     {Action, ApplyAction, CancelAction, DoneAction, RejectAction};
+use R794021\Exception\DataDomainException;
 
 
 class Task
@@ -26,7 +27,7 @@ class Task
     public function __construct(string $status, Customer $customer, Contractor $contractor = Null)
     {
         if (! in_array($status, self::STATUSES)) {
-            throw new \DomainException('Unknown task status.');
+            throw new DataDomainException('Task status should be one of the list');
         }
 
         if ($contractor && $customer->getId() === $contractor->getId()) {

@@ -3,7 +3,10 @@
 use R794021\Task\Task;
 use R794021\User\{Contractor, Customer};
 use R794021\Action\{ApplyAction, CancelAction, DoneAction, RejectAction};
+use R794021\Exception\DataDomainException;
 
+const UNEXISTING_TASK_STATUS = 'This status is fictuous';
+const UNEXISTING_TASK_STATUS_EXCEPTION_TEXT = 'Task status should be one of the list';
 
 $customer = new Customer(CUSTOMER_1);
 $contractor = new Contractor(CONTRACTOR_1);
@@ -52,3 +55,10 @@ assert($task->getNextStatus(new ApplyAction()) === Task::STATUS_RUNNING);
 assert($task->getNextStatus(new CancelAction()) === Task::STATUS_CANCELLED);
 assert($task->getNextStatus(new DoneAction()) === Task::STATUS_DONE);
 assert($task->getNextStatus(new RejectAction()) === Task::STATUS_FAILED);
+
+//Testing of unexisted status
+try {
+    $task = new Task(UNEXISTING_TASK_STATUS, $customer, $contractor);
+} catch (DataDomainException $e) {
+    assert($e->getMessage() === UNEXISTING_TASK_STATUS_EXCEPTION_TEXT );
+}
