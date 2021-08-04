@@ -16,7 +16,7 @@ abstract class AbstractUser
         }
         $this->id = $userInfo['id'];
         if ( ! is_int($this->id) || $this->id <= 0 ) {
-            throw new DataDomainException('User id should be positive integer');
+            throw new DataDomainException('User id must be positive integer');
         }
     }
 
