@@ -7,9 +7,6 @@ use R794021\Actions\
     {Action, ApplyAction, CancelAction, DoneAction, RejectAction};
 
 
-/**
- *
- */
 class Task
 {
     public const STATUS_CANCELLED  = 'cancelled';
