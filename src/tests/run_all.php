@@ -27,7 +27,11 @@ if ( $zendAssertionSetting !== '1' ) {
 // Include all matching files recursively
 $directory = new \RecursiveDirectoryIterator(__DIR__);
 $iterator = new \RecursiveIteratorIterator($directory);
-$files = new \RegexIterator($iterator, '/^.+Test.php$/i', RecursiveRegexIterator::GET_MATCH);
+$files = new \RegexIterator(
+    $iterator,
+    '/^.+Test.php$/i',
+    RecursiveRegexIterator::GET_MATCH
+);
 
 foreach ($files as $file) {
     $filename = basename($file[0]);

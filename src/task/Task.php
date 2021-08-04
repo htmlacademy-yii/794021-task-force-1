@@ -1,5 +1,4 @@
 <?php
-
 namespace R794021\Task;
 
 use R794021\User\{Contractor, Customer, User};
@@ -24,14 +23,19 @@ class Task
         self::STATUS_FAILED,
     ];
 
-    public function __construct(string $status, Customer $customer, Contractor $contractor = Null)
+    public function __construct(
+        string $status,
+        Customer $customer,
+        Contractor $contractor = Null)
     {
         if (! in_array($status, self::STATUSES)) {
             throw new DataDomainException('Task status should be one of the list');
         }
 
         if ($contractor && $customer->getId() === $contractor->getId()) {
-            throw new DataDomainException('Contractor cannot be a customer of the same task');
+            throw new DataDomainException(
+                'Contractor cannot be a customer of the same task'
+            );
         }
 
         $this->status = $status;

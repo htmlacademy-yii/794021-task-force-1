@@ -1,5 +1,4 @@
 <?php
-
 use R794021\Action\RejectAction;
 use R794021\Task\Task;
 use R794021\User\{Contractor, Customer};
