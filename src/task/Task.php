@@ -1,6 +1,6 @@
 <?php
 
-namespace R794021\Tasks;
+namespace R794021\Task;
 
 use R794021\Users\{Contractor, Customer, User};
 use R794021\Action\

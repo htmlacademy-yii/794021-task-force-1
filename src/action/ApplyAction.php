@@ -1,7 +1,7 @@
 <?php
 namespace R794021\Action;
 
-use R794021\Tasks\Task;
+use R794021\Task\Task;
 use R794021\Users\User;
 
 

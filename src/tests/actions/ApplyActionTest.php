@@ -1,7 +1,7 @@
 <?php
 
 use R794021\Action\ApplyAction;
-use R794021\Tasks\Task;
+use R794021\Task\Task;
 use R794021\Users\{Customer, Contractor};
 
 $apply = new ApplyAction();
