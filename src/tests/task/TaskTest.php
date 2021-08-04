@@ -1,13 +1,15 @@
 <?php
 
 use R794021\Task\Task;
-use R794021\User\{Contractor, Customer};
-use R794021\Action\{ApplyAction, CancelAction, DoneAction, RejectAction};
+use R794021\User\{Contractor, Customer, User};
+use R794021\Action\
+    {AbstractAction, Action, ApplyAction, CancelAction, DoneAction, RejectAction};
 use R794021\Exception\DataDomainException;
 
 const UNEXISTING_TASK_STATUS = 'This status is fictuous';
 const UNEXISTING_TASK_STATUS_EXCEPTION_TEXT = 'Task status should be one of the list';
 const SAME_PERSON_EXCEPTION_TEXT = 'Contractor cannot be a customer of the same task';
+const UNEXISTING_ACTION_EXCEPTION_TEXT = 'Unknown action for the task';
 
 $customer = new Customer(CUSTOMER_1);
 $contractor = new Contractor(CONTRACTOR_1);
@@ -94,4 +96,19 @@ try {
     $task = new Task(Task::STATUS_FAILED, $customer, $contractorWithCustomer1Id);
 } catch (DataDomainException $e) {
     assert($e->getMessage() === SAME_PERSON_EXCEPTION_TEXT );
+}
+
+// Checking unexisted action class
+$unexistingAction = new class extends AbstractAction implements Action
+{
+    public function isValid(User $user, Task $task): bool
+    {
+        return false;
+    }
+};
+
+try {
+    $task->getNextStatus($unexistingAction);
+} catch (DataDomainException $e) {
+    assert( $e->getMessage() === UNEXISTING_ACTION_EXCEPTION_TEXT );
 }

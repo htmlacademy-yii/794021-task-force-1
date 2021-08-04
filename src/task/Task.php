@@ -65,7 +65,7 @@ class Task
                 return self::STATUS_FAILED;
 
             default:
-                throw new \DomainException('Unknown action type');
+                throw new DataDomainException('Unknown action for the task');
         }
     }
 
