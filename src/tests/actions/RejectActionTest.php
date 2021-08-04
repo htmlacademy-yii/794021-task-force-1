@@ -1,6 +1,6 @@
 <?php
 
-use R794021\Actions\RejectAction;
+use R794021\Action\RejectAction;
 use R794021\Tasks\Task;
 use R794021\Users\{Contractor, Customer};
 

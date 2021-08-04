@@ -1,5 +1,5 @@
 <?php
-namespace R794021\Actions;
+namespace R794021\Action;
 
 
 interface Action

@@ -3,7 +3,7 @@
 namespace R794021\Tasks;
 
 use R794021\Users\{Contractor, Customer, User};
-use R794021\Actions\
+use R794021\Action\
     {Action, ApplyAction, CancelAction, DoneAction, RejectAction};
 
 
