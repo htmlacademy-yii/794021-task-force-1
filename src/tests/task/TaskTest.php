@@ -7,9 +7,11 @@ use R794021\Exception\DataDomainException;
 
 const UNEXISTING_TASK_STATUS = 'This status is fictuous';
 const UNEXISTING_TASK_STATUS_EXCEPTION_TEXT = 'Task status should be one of the list';
+const SAME_PERSON_EXCEPTION_TEXT = 'Contractor cannot be a customer of the same task';
 
 $customer = new Customer(CUSTOMER_1);
 $contractor = new Contractor(CONTRACTOR_1);
+$contractorWithCustomer1Id = new Contractor(CUSTOMER_1);
 
 // Testing of 'NEW' status
 $task = new Task(Task::STATUS_NEW, $customer);
@@ -61,4 +63,35 @@ try {
     $task = new Task(UNEXISTING_TASK_STATUS, $customer, $contractor);
 } catch (DataDomainException $e) {
     assert($e->getMessage() === UNEXISTING_TASK_STATUS_EXCEPTION_TEXT );
+}
+
+//Testing if contractor is the same person as the customer
+try {
+    $task = new Task(Task::STATUS_NEW, $customer, $contractorWithCustomer1Id);
+} catch (DataDomainException $e) {
+    assert($e->getMessage() === SAME_PERSON_EXCEPTION_TEXT);
+}
+
+try {
+    $task = new Task(Task::STATUS_RUNNING, $customer, $contractorWithCustomer1Id);
+} catch (DataDomainException $e) {
+    assert($e->getMessage() === SAME_PERSON_EXCEPTION_TEXT );
+}
+
+try {
+    $task = new Task(Task::STATUS_CANCELLED, $customer, $contractorWithCustomer1Id);
+} catch (DataDomainException $e) {
+    assert($e->getMessage() === SAME_PERSON_EXCEPTION_TEXT );
+}
+
+try {
+    $task = new Task(Task::STATUS_DONE, $customer, $contractorWithCustomer1Id);
+} catch (DataDomainException $e) {
+    assert($e->getMessage() === SAME_PERSON_EXCEPTION_TEXT );
+}
+
+try {
+    $task = new Task(Task::STATUS_FAILED, $customer, $contractorWithCustomer1Id);
+} catch (DataDomainException $e) {
+    assert($e->getMessage() === SAME_PERSON_EXCEPTION_TEXT );
 }

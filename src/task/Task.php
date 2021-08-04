@@ -31,7 +31,7 @@ class Task
         }
 
         if ($contractor && $customer->getId() === $contractor->getId()) {
-            throw new \DomainException('Contractor cannot be a customer of the same task.');
+            throw new DataDomainException('Contractor cannot be a customer of the same task');
         }
 
         $this->status = $status;
