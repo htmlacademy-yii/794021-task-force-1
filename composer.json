@@ -1,10 +1,15 @@
 {
-  "require": {
-  },
+    "require": {},
 
-  "autoload": {
-      "psr-4": {
-          "R794021\\": "php/"
-      }
-  }
+    "autoload": {
+        "psr-4": {
+            "R794021\\": "src/"
+        }
+    },
+
+    "scripts": {
+        "test": [
+            "php src/tests/run_all.php"
+        ]
+    }
 }

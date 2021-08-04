@@ -1,7 +1,8 @@
 # Личный проект «TaskForce»
 
 * Студент: [Rustam Arkharov](https://up.htmlacademy.ru/yii/1/user/794021).
-* Наставник: Влад Григорев.
+* Наставник: [Олег Мифле](https://htmlacademy.ru/profile/id496565).
+* Предыдущий наставник: Влад Григорев.
 
 ---
 
