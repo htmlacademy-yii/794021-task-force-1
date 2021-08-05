@@ -9,7 +9,7 @@
 
     "scripts": {
         "test": [
-            "php src/tests/run_all.php"
+            "php test/run_all.php"
         ]
     }
 }

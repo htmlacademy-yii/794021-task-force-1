@@ -1,15 +1,12 @@
 <?php
+namespace R794021\Task;
 
-namespace R794021\Tasks;
-
-use R794021\Users\{Contractor, Customer, User};
-use R794021\Actions\
+use R794021\User\{Contractor, Customer, User};
+use R794021\Action\
     {Action, ApplyAction, CancelAction, DoneAction, RejectAction};
+use R794021\Exception\DataDomainException;
 
 
-/**
- *
- */
 class Task
 {
     public const STATUS_CANCELLED  = 'cancelled';
@@ -26,14 +23,21 @@ class Task
         self::STATUS_FAILED,
     ];
 
-    public function __construct(string $status, Customer $customer, Contractor $contractor = Null)
+    public function __construct(
+        string $status,
+        Customer $customer,
+        Contractor $contractor = null)
     {
-        if (! in_array($status, self::STATUSES)) {
-            throw new \DomainException('Unknown task status.');
+        if ( ! in_array($status, self::STATUSES) ) {
+            throw new DataDomainException(
+                'Task status should be one of the list'
+            );
         }
 
-        if ($contractor && $customer->getId() === $contractor->getId()) {
-            throw new \DomainException('Contractor cannot be a customer of the same task.');
+        if ( $contractor && $customer->getId() === $contractor->getId() ) {
+            throw new DataDomainException(
+                'Contractor cannot be a customer of the same task'
+            );
         }
 
         $this->status = $status;
@@ -46,14 +50,14 @@ class Task
         return $this->customer;
     }
 
-    public function getContractor(): User|Null
+    public function getContractor(): User|null
     {
         return $this->contractor;
     }
 
     public static function getNextStatus(Action $action): string
     {
-        switch (True) {
+        switch (true) {
             case $action instanceof ApplyAction:
                 return self::STATUS_RUNNING;
 
@@ -67,7 +71,7 @@ class Task
                 return self::STATUS_FAILED;
 
             default:
-                throw new \DomainException('Unknown action type');
+                throw new DataDomainException('Unknown action for the task');
         }
     }
 
