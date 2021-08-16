@@ -11,7 +11,7 @@ class CSVImporter
     public function __construct(string $filename)
     {
         $this->filename = $filename;
-        if (! \file_exists($filename) || ! is_file($filename)) {
+        if ( ! \is_readable($filename) || ! \is_file($filename) ) {
             throw new \Exception("File '$filename' cannot be opened");
         }
         $this->file = new \SplFileObject($this->filename, 'r');
