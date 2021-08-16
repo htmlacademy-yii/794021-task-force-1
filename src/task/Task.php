@@ -50,7 +50,7 @@ class Task
         return $this->customer;
     }
 
-    public function getContractor(): User|null
+    public function getContractor(): ?User
     {
         return $this->contractor;
     }
