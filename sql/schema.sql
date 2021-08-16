@@ -105,11 +105,11 @@ CREATE TABLE task (
     FULLTEXT (title, text, address, address_comment)
 );
 
-CREATE TABLE contractors_application (
+CREATE TABLE contractor_application (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task_id INT NOT NULL,
       FOREIGN KEY (task_id) REFERENCES task(id),
-    applicant_id INT NULL,
+    applicant_id INT NOT NULL,
       FOREIGN KEY (applicant_id) REFERENCES user(id),
     budget INT NOT NULL,
     text VARCHAR(2000),
