@@ -22,11 +22,6 @@ CREATE TABLE task_category (
     icon VARCHAR(255)
 );
 
-CREATE TABLE occupation (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(30) NOT NULL UNIQUE
-);
-
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fullname VARCHAR(255) NOT NULL,
@@ -157,7 +152,7 @@ CREATE TABLE contractor_occupation (
     contractor_id INT NOT NULL,
       FOREIGN KEY (contractor_id) REFERENCES user(id),
     occupation_id INT NOT NULL,
-      FOREIGN KEY (occupation_id) REFERENCES occupation(id),
+      FOREIGN KEY (occupation_id) REFERENCES task_category(id),
 
     UNIQUE KEY(contractor_id, occupation_id)
 );
