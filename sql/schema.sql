@@ -78,8 +78,8 @@ CREATE TABLE user (
  */
 CREATE TABLE task (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(60) NOT NULL,
-    text VARCHAR(255),
+    title VARCHAR(255) NOT NULL,
+    text VARCHAR(2000),
 
     category_id INT NOT NULL,
       FOREIGN KEY (category_id) REFERENCES task_category(id),
@@ -111,8 +111,7 @@ CREATE TABLE contractors_application (
       FOREIGN KEY (task_id) REFERENCES task(id),
     applicant_id INT NULL,
       FOREIGN KEY (applicant_id) REFERENCES user(id),
-    budget INT DEFAULT NULL, # TODO
-    text VARCHAR(255),
+    text VARCHAR(2000),
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
