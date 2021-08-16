@@ -6,7 +6,7 @@ USE 794021_taskforce;
 
 CREATE TABLE city (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     latitude DECIMAL(10, 8) DEFAULT NULL,
     longitude DECIMAL(11, 8) DEFAULT NULL
 );
