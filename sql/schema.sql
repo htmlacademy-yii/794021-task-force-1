@@ -154,7 +154,7 @@ CREATE TABLE contractor_occupation (
     occupation_id INT NOT NULL,
       FOREIGN KEY (occupation_id) REFERENCES task_category(id),
 
-    UNIQUE KEY(contractor_id, occupation_id)
+    UNIQUE (contractor_id, occupation_id)
 );
 
 CREATE TABLE task_file (
