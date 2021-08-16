@@ -111,6 +111,7 @@ CREATE TABLE contractors_application (
       FOREIGN KEY (task_id) REFERENCES task(id),
     applicant_id INT NULL,
       FOREIGN KEY (applicant_id) REFERENCES user(id),
+    budget INT NOT NULL,
     text VARCHAR(2000),
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
