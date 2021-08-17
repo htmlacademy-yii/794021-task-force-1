@@ -3,9 +3,8 @@ namespace R794021\DataFile;
 
 class DataTable
 {
-    protected array $fields;
-    protected array $map;
-    protected array $mappedFields = [];
+    protected array $headers;
+    protected array $rows;
 
     public function __construct(array $headers = [], $rows = [])
     {
