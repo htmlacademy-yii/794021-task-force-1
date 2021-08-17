@@ -38,10 +38,9 @@ class DataTable
                 continue;
             }
             $this->headers[] = $header;
-            $this->rows = array_map(function($row) use ($boundary) {
-                $row[] = rand(1, $boundary);
-                return $row;
-            }, $this->rows);
+            for ($i = 0; $i < count($this->rows); $i++) {
+                $this->rows[$i][] = rand(1, $boundary);
+            }
         };
     }
 }
