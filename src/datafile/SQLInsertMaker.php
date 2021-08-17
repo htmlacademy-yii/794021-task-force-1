@@ -8,7 +8,9 @@ class SQLInsertMaker
     }
 
     public static function make(
-        string $tablename, array $headers, array $rows
+        string $tablename,
+        array $headers,
+        array $rows
     ): string
     {
         $result = '';
