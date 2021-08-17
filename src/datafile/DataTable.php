@@ -35,7 +35,7 @@ class DataTable
     public function generate(array $fakeItems = []): void
     {
         foreach($fakeItems as $header => $boundary) {
-            if ( in_array($header, $this->headers) ) {
+            if (in_array($header, $this->headers)) {
                 continue;
             }
             $this->headers[] = $header;
