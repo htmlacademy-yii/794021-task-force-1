@@ -22,7 +22,7 @@ class DataTable
         return $this->rows;
     }
 
-    public function changeHeaders(array $newHeaders): void
+    public function renameHeaders(array $newHeaders): void
     {
         $this->headers = \array_map(function ($header) use ($newHeaders) {
             return \array_key_exists($header, $newHeaders) ?

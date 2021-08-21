@@ -43,12 +43,12 @@ assert($table->getRows() === []);
 
 // Change header existing
 $table = new DataTable(HEADERS, ROWS);
-$table->changeHeaders(HEADERS_NEW);
+$table->renameHeaders(HEADERS_NEW);
 assert($table->getHeaders() === HEADERS_RESULT);
 
 // Change header inxisting
 $table = new DataTable(HEADERS, ROWS);
-$table->changeHeaders(HEADERS_INEXISTING);
+$table->renameHeaders(HEADERS_INEXISTING);
 assert($table->getHeaders() === HEADERS);
 assert($table->getRows() === ROWS);
 
