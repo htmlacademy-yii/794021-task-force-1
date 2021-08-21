@@ -108,8 +108,8 @@ foreach(SETTINGS as $inputFilename => $setting) {
         $table->getHeaders(),
         $table->getRows()
     );
-    $table->changeHeaders($fieldsMap);
-    $table->generate($fakeItems);
+    $table->renameHeaders($fieldsMap);
+    $table->addFakeData($fakeItems);
     $sqlStatement = SQLInsertMaker::make(
         $tableName, $table->getHeaders(), $table->getRows()
     );
