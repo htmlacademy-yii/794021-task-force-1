@@ -104,10 +104,6 @@ foreach(SETTINGS as $inputFilename => $settings) {
     ] = $settings;
     $importer = new CSVImporter($inputFilename);
     $table = new DataTable($importer->getHeaders(), $importer->getRows());
-    $headersMapper = new DataTable(
-        $table->getHeaders(),
-        $table->getRows()
-    );
     $table->renameHeaders($fieldsMap);
     $table->addFakeData($fakeItems);
     $sqlStatement = SQLInsertMaker::make(
