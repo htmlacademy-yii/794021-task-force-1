@@ -31,7 +31,7 @@ class DataTable
         }, $this->headers);
     }
 
-    public function generate(array $fakeItems = []): void
+    public function addFakeData(array $fakeItems = []): void
     {
         foreach($fakeItems as $header => $boundary) {
             if (in_array($header, $this->headers)) {
