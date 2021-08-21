@@ -38,9 +38,10 @@ class DataTable
                 continue;
             }
             $this->headers[] = $header;
-            for ($i = 0; $i < count($this->rows); $i++) {
-                $this->rows[$i][] = rand(1, $boundary);
-            }
+            $this->rows = \array_map(function ($row) use ($boundary) {
+                $newValue = \rand(1, $boundary);
+                return \array_merge($row, [$newValue]);
+            }, $this->rows);
         };
     }
 }
