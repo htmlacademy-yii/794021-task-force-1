@@ -11,7 +11,7 @@ class CSVImporter
     public function __construct(string $filename)
     {
         $this->filename = $filename;
-        if (! \is_readable($filename) || ! \is_file($filename)) {
+        if (!\is_readable($filename) || !\is_file($filename)) {
             throw new \Exception("File '$filename' cannot be opened");
         }
         $this->file = new \SplFileObject($this->filename, 'r');
@@ -32,9 +32,9 @@ class CSVImporter
 
     protected function readBody(): void
     {
-        while (! $this->file->eof()) {
+        while (!$this->file->eof()) {
             $fields = $this->file->fgetcsv();
-            if (! $fields || ! count($fields)) {
+            if (!$fields || !count($fields)) {
                 continue;
             }
             $this->rows[] = $fields;

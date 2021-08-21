@@ -28,7 +28,7 @@ class Task
         Customer $customer,
         Contractor $contractor = null)
     {
-        if ( ! in_array($status, self::STATUSES) ) {
+        if (!in_array($status, self::STATUSES)) {
             throw new DataDomainException(
                 'Task status should be one of the list'
             );

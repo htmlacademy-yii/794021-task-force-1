@@ -11,11 +11,11 @@ abstract class AbstractUser
 
     public function __construct(array $userInfo)
     {
-        if (! array_key_exists('id', $userInfo)) {
+        if (!array_key_exists('id', $userInfo)) {
             throw new DataDomainException('User id field should exist');
         }
         $this->id = $userInfo['id'];
-        if (! is_int($this->id) || $this->id <= 0) {
+        if (!is_int($this->id) || $this->id <= 0) {
             throw new DataDomainException('User id must be positive integer');
         }
     }
