@@ -28,8 +28,8 @@ assert($apply->getInternalCodename() !== ' apply');
         Only users with 'Contractor' class can apply
  */
 $task = new Task(Task::STATUS_NEW, $customer1);
-assert(! $apply->isValid($customer1, $task));
-assert(! $apply->isValid($customer2, $task));
+assert(!$apply->isValid($customer1, $task));
+assert(!$apply->isValid($customer2, $task));
 assert($apply->isValid($contractor1, $task));
 assert($apply->isValid($contractor2, $task));
 
@@ -40,10 +40,10 @@ assert($apply->isValid($contractor2, $task));
         No one can apply for the already running task
  */
 $task = new Task(Task::STATUS_RUNNING, $customer1, $contractor1);
-assert(! $apply->isValid($contractor1, $task));
-assert(! $apply->isValid($contractor2, $task));
-assert(! $apply->isValid($customer1, $task));
-assert(! $apply->isValid($customer2, $task));
+assert(!$apply->isValid($contractor1, $task));
+assert(!$apply->isValid($contractor2, $task));
+assert(!$apply->isValid($customer1, $task));
+assert(!$apply->isValid($customer2, $task));
 
 /*
     Conditions:
@@ -52,10 +52,10 @@ assert(! $apply->isValid($customer2, $task));
         No one can apply for the already running task
  */
 $task = new Task(Task::STATUS_DONE, $customer1, $contractor1);
-assert(! $apply->isValid($contractor1, $task));
-assert(! $apply->isValid($contractor2, $task));
-assert(! $apply->isValid($customer1, $task));
-assert(! $apply->isValid($customer2, $task));
+assert(!$apply->isValid($contractor1, $task));
+assert(!$apply->isValid($contractor2, $task));
+assert(!$apply->isValid($customer1, $task));
+assert(!$apply->isValid($customer2, $task));
 
 /*
     Conditions:
@@ -64,7 +64,7 @@ assert(! $apply->isValid($customer2, $task));
         No one can apply for the already running task
  */
 $task = new Task(Task::STATUS_FAILED, $customer1, $contractor1);
-assert(! $apply->isValid($contractor1, $task));
-assert(! $apply->isValid($contractor2, $task));
-assert(! $apply->isValid($customer1, $task));
-assert(! $apply->isValid($customer2, $task));
+assert(!$apply->isValid($contractor1, $task));
+assert(!$apply->isValid($contractor2, $task));
+assert(!$apply->isValid($customer1, $task));
+assert(!$apply->isValid($customer2, $task));

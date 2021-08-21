@@ -29,10 +29,10 @@ assert($done->getInternalCodename() !== ' done');
         No one may confirm the task is done
 */
 $task1 = new Task(Task::STATUS_NEW, $customer1);
-assert(! $done->isValid($customer1, $task1));
-assert(! $done->isValid($customer2, $task1));
-assert(! $done->isValid($contractor1, $task1));
-assert(! $done->isValid($contractor2, $task1));
+assert(!$done->isValid($customer1, $task1));
+assert(!$done->isValid($customer2, $task1));
+assert(!$done->isValid($contractor1, $task1));
+assert(!$done->isValid($contractor2, $task1));
 
 /*
     Conditions:
@@ -43,9 +43,9 @@ assert(! $done->isValid($contractor2, $task1));
 */
 $task1 = new Task(Task::STATUS_RUNNING, $customer1, $contractor1);
 assert($done->isValid($customer1, $task1));
-assert(! $done->isValid($customer2, $task1));
-assert(! $done->isValid($contractor1, $task1));
-assert(! $done->isValid($contractor2, $task1));
+assert(!$done->isValid($customer2, $task1));
+assert(!$done->isValid($contractor1, $task1));
+assert(!$done->isValid($contractor2, $task1));
 
 /*
     Conditions:
@@ -55,10 +55,10 @@ assert(! $done->isValid($contractor2, $task1));
         Only its customer may confirm the task is done
 */
 $task1 = new Task(Task::STATUS_FAILED, $customer1, $contractor1);
-assert(! $done->isValid($customer1, $task1));
-assert(! $done->isValid($customer2, $task1));
-assert(! $done->isValid($contractor1, $task1));
-assert(! $done->isValid($contractor2, $task1));
+assert(!$done->isValid($customer1, $task1));
+assert(!$done->isValid($customer2, $task1));
+assert(!$done->isValid($contractor1, $task1));
+assert(!$done->isValid($contractor2, $task1));
 
 /*
     Conditions:
@@ -68,7 +68,7 @@ assert(! $done->isValid($contractor2, $task1));
         No one may re-confirm the task is done
 */
 $task1 = new Task(Task::STATUS_DONE, $customer1, $contractor1);
-assert(! $done->isValid($customer1, $task1));
-assert(! $done->isValid($customer2, $task1));
-assert(! $done->isValid($contractor1, $task1));
-assert(! $done->isValid($contractor2, $task1));
+assert(!$done->isValid($customer1, $task1));
+assert(!$done->isValid($customer2, $task1));
+assert(!$done->isValid($contractor1, $task1));
+assert(!$done->isValid($contractor2, $task1));

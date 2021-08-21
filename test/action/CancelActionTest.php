@@ -30,9 +30,9 @@ assert($cancel->getInternalCodename() !== 'apply');
 */
 $task1 = new Task(Task::STATUS_NEW, $customer1);
 assert($cancel->isValid($customer1, $task1));
-assert(! $cancel->isValid($customer2, $task1));
-assert(! $cancel->isValid($contractor1, $task1));
-assert(! $cancel->isValid($contractor2, $task1));
+assert(!$cancel->isValid($customer2, $task1));
+assert(!$cancel->isValid($contractor1, $task1));
+assert(!$cancel->isValid($contractor2, $task1));
 
 /*
     Conditions:
@@ -42,10 +42,10 @@ assert(! $cancel->isValid($contractor2, $task1));
         No user can cancel the task
 */
 $task1 = new Task(Task::STATUS_RUNNING, $customer1, $contractor1);
-assert(! $cancel->isValid($customer1, $task1));
-assert(! $cancel->isValid($customer2, $task1));
-assert(! $cancel->isValid($contractor1, $task1));
-assert(! $cancel->isValid($contractor2, $task1));
+assert(!$cancel->isValid($customer1, $task1));
+assert(!$cancel->isValid($customer2, $task1));
+assert(!$cancel->isValid($contractor1, $task1));
+assert(!$cancel->isValid($contractor2, $task1));
 
 /*
     Conditions:
@@ -55,10 +55,10 @@ assert(! $cancel->isValid($contractor2, $task1));
         No one can cancel the task
 */
 $task1 = new Task(Task::STATUS_CANCELLED, $customer1, $contractor1);
-assert(! $cancel->isValid($customer1, $task1));
-assert(! $cancel->isValid($customer2, $task1));
-assert(! $cancel->isValid($contractor1, $task1));
-assert(! $cancel->isValid($contractor2, $task1));
+assert(!$cancel->isValid($customer1, $task1));
+assert(!$cancel->isValid($customer2, $task1));
+assert(!$cancel->isValid($contractor1, $task1));
+assert(!$cancel->isValid($contractor2, $task1));
 
 /*
     Conditions:
@@ -68,10 +68,10 @@ assert(! $cancel->isValid($contractor2, $task1));
         No one can cancel the task the second time
 */
 $task1 = new Task(Task::STATUS_DONE, $customer1, $contractor1);
-assert(! $cancel->isValid($customer1, $task1));
-assert(! $cancel->isValid($customer2, $task1));
-assert(! $cancel->isValid($contractor1, $task1));
-assert(! $cancel->isValid($contractor2, $task1));
+assert(!$cancel->isValid($customer1, $task1));
+assert(!$cancel->isValid($customer2, $task1));
+assert(!$cancel->isValid($contractor1, $task1));
+assert(!$cancel->isValid($contractor2, $task1));
 
 /*
     Conditions:
@@ -81,7 +81,7 @@ assert(! $cancel->isValid($contractor2, $task1));
         No one can cancel the task the second time
 */
 $task1 = new Task(Task::STATUS_DONE, $customer1, $contractor1);
-assert(! $cancel->isValid($customer1, $task1));
-assert(! $cancel->isValid($customer2, $task1));
-assert(! $cancel->isValid($contractor1, $task1));
-assert(! $cancel->isValid($contractor2, $task1));
+assert(!$cancel->isValid($customer1, $task1));
+assert(!$cancel->isValid($customer2, $task1));
+assert(!$cancel->isValid($contractor1, $task1));
+assert(!$cancel->isValid($contractor2, $task1));
