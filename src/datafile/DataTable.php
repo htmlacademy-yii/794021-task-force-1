@@ -22,25 +22,27 @@ class DataTable
         return $this->rows;
     }
 
-    public function renameHeaders(array $newHeaders): void
+    public function renameHeaders(array $mapHeaders): void
     {
-        $this->headers = \array_map(function ($header) use ($newHeaders) {
-            return \array_key_exists($header, $newHeaders) ?
-                $newHeaders[$header] :
-                $header;
+        $this->headers = \array_map(function ($header) use ($mapHeaders) {
+            if (! \array_key_exists($header, $mapHeaders)) {
+                return $header;
+            }
+            $renamedHeader = $mapHeaders[$header];
+            return $renamedHeader;
         }, $this->headers);
     }
 
     public function addFakeData(array $fakeItems = []): void
     {
-        foreach($fakeItems as $header => $boundary) {
+        foreach($fakeItems as $header => $maxLimit) {
             if (\in_array($header, $this->headers)) {
                 continue;
             }
             $this->headers[] = $header;
-            $this->rows = \array_map(function ($row) use ($boundary) {
-                $newValue = \rand(1, $boundary);
-                return \array_merge($row, [$newValue]);
+            $this->rows = \array_map(function ($row) use ($maxLimit) {
+                $generatedValue = \rand(1, $maxLimit);
+                return \array_merge($row, [$generatedValue]);
             }, $this->rows);
         };
     }
