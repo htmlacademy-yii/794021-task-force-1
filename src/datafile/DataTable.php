@@ -24,7 +24,7 @@ class DataTable
 
     public function changeHeaders(array $newHeaders): void
     {
-        $this->headers = array_map(function ($header) use ($newHeaders) {
+        $this->headers = \array_map(function ($header) use ($newHeaders) {
             return \array_key_exists($header, $newHeaders) ?
                 $newHeaders[$header] :
                 $header;
@@ -34,7 +34,7 @@ class DataTable
     public function addFakeData(array $fakeItems = []): void
     {
         foreach($fakeItems as $header => $boundary) {
-            if (in_array($header, $this->headers)) {
+            if (\in_array($header, $this->headers)) {
                 continue;
             }
             $this->headers[] = $header;
