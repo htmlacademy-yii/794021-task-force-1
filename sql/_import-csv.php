@@ -95,13 +95,13 @@ const SETTINGS = [
     ],
 ];
 
-foreach(SETTINGS as $inputFilename => $setting) {
-    list(
+foreach(SETTINGS as $inputFilename => $settings) {
+    [
         'output' => $outputFilename,
         'table' => $tableName,
         'fieldsMap' => $fieldsMap,
         'fakeItems' => $fakeItems,
-    ) = $setting;
+    ] = $settings;
     $importer = new CSVImporter($inputFilename);
     $table = new DataTable($importer->getHeaders(), $importer->getRows());
     $headersMapper = new DataTable(
