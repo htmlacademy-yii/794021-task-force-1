@@ -1,5 +1,5 @@
 <?php
-use R794021\User\{User};
+use R794021\User\User;
 use R794021\Exception\DataDomainException;
 
 const USER_HAS_NO_ID_FIELD_EXCEPTION_TEXT = 'User id field should exist';
