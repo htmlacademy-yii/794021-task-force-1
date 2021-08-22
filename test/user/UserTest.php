@@ -13,7 +13,6 @@ try {
     $user = new class (USER_HAS_NO_ID_FIELD) extends User {
         public static function isContractor(): bool { return false; }
         public static function isCustomer(): bool { return false; }
-
     };
 } catch (DataDomainException $e) {
     $hasException = true;
