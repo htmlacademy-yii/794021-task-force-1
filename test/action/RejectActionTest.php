@@ -29,10 +29,10 @@ assert($reject->getInternalCodename() !== ' reject');
         No one may reject unstarted task
 */
 $task1 = new Task(Task::STATUS_NEW, $customer1);
-assert(! $reject->isValid($customer1, $task1));
-assert(! $reject->isValid($customer2, $task1));
-assert(! $reject->isValid($contractor1, $task1));
-assert(! $reject->isValid($contractor2, $task1));
+assert(!$reject->isValid($customer1, $task1));
+assert(!$reject->isValid($customer2, $task1));
+assert(!$reject->isValid($contractor1, $task1));
+assert(!$reject->isValid($contractor2, $task1));
 
 /*
     Conditions:
@@ -43,9 +43,9 @@ assert(! $reject->isValid($contractor2, $task1));
 */
 $task1 = new Task(Task::STATUS_RUNNING, $customer1, $contractor1);
 assert($reject->isValid($contractor1, $task1));
-assert(! $reject->isValid($contractor2, $task1));
-assert(! $reject->isValid($customer1, $task1));
-assert(! $reject->isValid($customer2, $task1));
+assert(!$reject->isValid($contractor2, $task1));
+assert(!$reject->isValid($customer1, $task1));
+assert(!$reject->isValid($customer2, $task1));
 
 /*
     Conditions:
@@ -55,10 +55,10 @@ assert(! $reject->isValid($customer2, $task1));
         No one may reject the finished task
 */
 $task1 = new Task(Task::STATUS_DONE, $customer1);
-assert(! $reject->isValid($contractor1, $task1));
-assert(! $reject->isValid($contractor2, $task1));
-assert(! $reject->isValid($customer1, $task1));
-assert(! $reject->isValid($customer2, $task1));
+assert(!$reject->isValid($contractor1, $task1));
+assert(!$reject->isValid($contractor2, $task1));
+assert(!$reject->isValid($customer1, $task1));
+assert(!$reject->isValid($customer2, $task1));
 
 /*
     Conditions:
@@ -68,7 +68,7 @@ assert(! $reject->isValid($customer2, $task1));
         No one may reject the Failed task
 */
 $task1 = new Task(Task::STATUS_FAILED, $customer1);
-assert(! $reject->isValid($contractor1, $task1));
-assert(! $reject->isValid($contractor2, $task1));
-assert(! $reject->isValid($customer1, $task1));
-assert(! $reject->isValid($customer2, $task1));
+assert(!$reject->isValid($contractor1, $task1));
+assert(!$reject->isValid($contractor2, $task1));
+assert(!$reject->isValid($customer1, $task1));
+assert(!$reject->isValid($customer2, $task1));

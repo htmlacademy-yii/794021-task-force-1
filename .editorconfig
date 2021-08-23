@@ -28,3 +28,6 @@ insert_final_newline = false
 
 [*.md]
 trim_trailing_whitespace = false
+
+[*.csv]
+insert_final_newline = false

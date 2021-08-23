@@ -17,14 +17,14 @@ $contractorWithCustomer1Id = new Contractor(CUSTOMER_1);
 // Testing of 'NEW' status
 $task = new Task(Task::STATUS_NEW, $customer);
 assert($task->getStatus() === Task::STATUS_NEW);
-assert(! $task->isRunning());
+assert(!$task->isRunning());
 assert($task->getCustomer() == $customer);
-assert(! $task->getContractor());
+assert(!$task->getContractor());
 
 // Testing of 'CANCELLED' status
 $task = new Task(Task::STATUS_CANCELLED, $customer, $contractor);
 assert($task->getStatus() === Task::STATUS_CANCELLED);
-assert(! $task->isRunning());
+assert(!$task->isRunning());
 assert($task->getCustomer() == $customer);
 assert($task->getContractor() == $contractor);
 assert($task->getCustomer() !== $task->getContractor());
@@ -40,7 +40,7 @@ assert($task->getCustomer() !== $task->getContractor());
 // Testing of 'DONE' status
 $task = new Task(Task::STATUS_DONE, $customer, $contractor);
 assert($task->getStatus() === Task::STATUS_DONE);
-assert(! $task->isRunning());
+assert(!$task->isRunning());
 assert($task->getCustomer() == $customer);
 assert($task->getContractor() == $contractor);
 assert($task->getCustomer() !== $task->getContractor());
@@ -48,7 +48,7 @@ assert($task->getCustomer() !== $task->getContractor());
 // Testing of 'FAILED' status
 $task = new Task(Task::STATUS_FAILED, $customer, $contractor);
 assert($task->getStatus() === Task::STATUS_FAILED);
-assert(! $task->isRunning());
+assert(!$task->isRunning());
 assert($task->getCustomer() == $customer);
 assert($task->getContractor() == $contractor);
 assert($task->getCustomer() !== $task->getContractor());

@@ -3,7 +3,7 @@
 namespace R794021\User;
 
 
-class Contractor extends AbstractUser implements User
+class Contractor extends User
 {
     static public function isContractor(): bool
     {

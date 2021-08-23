@@ -6,7 +6,7 @@ USE 794021_taskforce;
 
 CREATE TABLE city (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL,
     latitude DECIMAL(10, 8) DEFAULT NULL,
     longitude DECIMAL(11, 8) DEFAULT NULL
 );
@@ -20,11 +20,6 @@ CREATE TABLE task_category (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30) NOT NULL UNIQUE,
     icon VARCHAR(255)
-);
-
-CREATE TABLE occupation (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(30) NOT NULL UNIQUE
 );
 
 CREATE TABLE user (
@@ -78,8 +73,8 @@ CREATE TABLE user (
  */
 CREATE TABLE task (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(60) NOT NULL,
-    text VARCHAR(255),
+    title VARCHAR(255) NOT NULL,
+    text VARCHAR(2000),
 
     category_id INT NOT NULL,
       FOREIGN KEY (category_id) REFERENCES task_category(id),
@@ -105,14 +100,14 @@ CREATE TABLE task (
     FULLTEXT (title, text, address, address_comment)
 );
 
-CREATE TABLE contractors_application (
+CREATE TABLE contractor_application (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task_id INT NOT NULL,
       FOREIGN KEY (task_id) REFERENCES task(id),
-    applicant_id INT NULL,
+    applicant_id INT NOT NULL,
       FOREIGN KEY (applicant_id) REFERENCES user(id),
-    budget INT DEFAULT NULL, # TODO
-    text VARCHAR(255),
+    budget INT NOT NULL,
+    text VARCHAR(2000),
     datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -157,9 +152,9 @@ CREATE TABLE contractor_occupation (
     contractor_id INT NOT NULL,
       FOREIGN KEY (contractor_id) REFERENCES user(id),
     occupation_id INT NOT NULL,
-      FOREIGN KEY (occupation_id) REFERENCES occupation(id),
+      FOREIGN KEY (occupation_id) REFERENCES task_category(id),
 
-    UNIQUE KEY(contractor_id, occupation_id)
+    UNIQUE (contractor_id, occupation_id)
 );
 
 CREATE TABLE task_file (
