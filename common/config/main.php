@@ -10,4 +10,10 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
     ],
+    'bootstrap' => ['gii'],
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+        ],
+    ],
 ];
