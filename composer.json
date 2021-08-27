@@ -44,7 +44,8 @@
     ],
     "autoload": {
       "psr-4": {
-          "R794021\\": "src/"
+          "R794021\\": "src/",
+          "frontend\\": "frontend/"
     },
     "scripts": {
         "test": [
