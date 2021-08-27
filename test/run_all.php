@@ -7,7 +7,7 @@
 
 declare(strict_types = 1);
 
-if ( $_SERVER['DOCUMENT_ROOT'] !== '' ) {
+if ($_SERVER['DOCUMENT_ROOT'] !== '') {
     die('Tests must be run under CLI command: "composer test"');
 }
 
@@ -17,7 +17,7 @@ require_once 'init.php';
 ini_set('display_errors', '1');
 ini_set('assert.exception', '1');
 $zendAssertionSetting = ini_get('zend.assertions');
-if ( $zendAssertionSetting !== '1' ) {
+if ($zendAssertionSetting !== '1') {
     throw new \Error(
         "Php.ini should set 'zend.assertions' to string '1',
         but '$zendAssertionSetting' is set"
