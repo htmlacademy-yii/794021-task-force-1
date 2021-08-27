@@ -50,10 +50,10 @@
     "scripts": {
         "test": [
             "php test/run_all.php"
+        ],
+        "import-csv" : [
+            "php sql/_import-csv.php"
         ]
-    },
-    "import-csv" : [
-        "php sql/_import-csv.php"
-    ]
+    }
   }
 }
