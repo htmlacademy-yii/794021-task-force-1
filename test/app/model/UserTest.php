@@ -1,14 +1,29 @@
 <?php
+namespace R794021\Test\app\model;
+
 use frontend\models\User;
 
-$user = new User();
+const TABLE_NAME = 'user';
+const MAX_USER_ID = 20;
 
-assert($user->tableName() === 'user');
+// Initialisation
+$userModel = new User();
 
-$rules = $user->rules();
+// Tests
+assert($userModel->tableName() === TABLE_NAME);
+
+$rules = $userModel->rules();
 assert(is_array($rules));
+assert(count($rules) > 0);
 
-$attributeLabels = $user->attributeLabels();
+$attributeLabels = $userModel->attributeLabels();
 assert(is_array($attributeLabels));
+assert(count($attributeLabels) > 0);
 
-$city = $user->getCity(); // TODO - Error 'Class Yii not found'
+
+// TODO
+$user = User::findOne(MAX_USER_ID);
+assert(gettype($user->fullname) === 'string');
+assert(gettype($user->email) === 'string');
+assert(gettype($user->password_hash) === 'string');
+assert(gettype($user->city_id) === 'integer');
