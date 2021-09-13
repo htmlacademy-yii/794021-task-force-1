@@ -20,8 +20,6 @@ $attributeLabels = $userModel->attributeLabels();
 assert(is_array($attributeLabels));
 assert(count($attributeLabels) > 0);
 
-
-// TODO
 $user = User::findOne(MAX_USER_ID);
 assert(gettype($user->fullname) === 'string');
 assert(gettype($user->email) === 'string');
