@@ -1,9 +1,14 @@
 <?php
+namespace Test\Task\TaskTest;
+
 use R794021\Task\Task;
 use R794021\User\{Contractor, Customer, User};
 use R794021\Action\
     {AbstractAction, Action, ApplyAction, CancelAction, DoneAction, RejectAction};
 use R794021\Exception\DataDomainException;
+
+const CUSTOMER_1 = ['id' => 12];
+const CONTRACTOR_1 = ['id' => 24];
 
 const UNEXISTING_TASK_STATUS = 'This status is fictuous';
 const UNEXISTING_TASK_STATUS_EXCEPTION_TEXT = 'Task status should be one of the list';

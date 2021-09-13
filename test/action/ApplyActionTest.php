@@ -1,7 +1,15 @@
 <?php
+namespace Test\Action\ApplyActionTest;
+
 use R794021\Action\ApplyAction;
 use R794021\Task\Task;
 use R794021\User\{Customer, Contractor};
+
+const CUSTOMER_1 = ['id' => 12];
+const CUSTOMER_2 = ['id' => 13];
+const CONTRACTOR_1 = ['id' => 24];
+const CONTRACTOR_2 = ['id' => 26];
+
 
 $apply = new ApplyAction();
 $customer1 = new Customer(CUSTOMER_1);

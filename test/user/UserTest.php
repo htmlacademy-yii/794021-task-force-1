@@ -1,11 +1,14 @@
 <?php
+namespace Test\User\UserTest;
+
 use R794021\User\User;
 use R794021\Exception\DataDomainException;
 
+const USER_ID_FIELD_NOT_POSITIVE_INTEGER = ['id' => '-1.0'];
+const USER_HAS_NO_ID_FIELD = ['idd' => 1];
 const USER_HAS_NO_ID_FIELD_EXCEPTION_TEXT = 'User id field should exist';
 const USER_ID_FIELD_NOT_POSITIVE_INTEGER_EXCEPTION_TEXT =
     'User id must be positive integer';
-
 
 // Test if 'id' field exist in user data
 try {
