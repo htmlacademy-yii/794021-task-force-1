@@ -21,5 +21,5 @@ assert(count($attributeLabels) > 0);
 
 $city = City::findOne(MAX_ID);
 assert(gettype($city->name) === 'string');
-assert(gettype($city->latitude) === 'string'); // Sic! Numeric MySQL become string in PHP/Yii
-assert(gettype($city->longitude) === 'string'); // Sic! Numeric MySQL become string in PHP/Yii
+assert(gettype($city->latitude) === 'string'); // Sic! Numeric MySQL becomes string in PHP/Yii
+assert(gettype($city->longitude) === 'string'); // Sic! Numeric MySQL becomes string in PHP/Yii
