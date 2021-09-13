@@ -1,5 +1,5 @@
 <?php
-namespace R794021\Test\app\model;
+namespace Test\yii\frontend\models\UserTest;
 
 use frontend\models\User;
 
