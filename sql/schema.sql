@@ -44,7 +44,7 @@ CREATE TABLE user (
     notify_on_review BOOLEAN DEFAULT 1,
 
     show_contacts_only_to_customer BOOLEAN DEFAULT 1,
-    hide_profile BOOLEAN DEFAULT 1,
+    hide_profile BOOLEAN DEFAULT 0,
 
     is_logged_in BOOLEAN DEFAULT 0,
     website_last_action_datetime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

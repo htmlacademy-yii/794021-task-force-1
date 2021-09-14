@@ -1,7 +1,14 @@
 <?php
+namespace Test\Action\RejectActionTest;
+
 use R794021\Action\RejectAction;
 use R794021\Task\Task;
 use R794021\User\{Contractor, Customer};
+
+const CUSTOMER_1 = ['id' => 12];
+const CUSTOMER_2 = ['id' => 13];
+const CONTRACTOR_1 = ['id' => 24];
+const CONTRACTOR_2 = ['id' => 26];
 
 $reject = new RejectAction();
 $customer1 = new Customer(CUSTOMER_1);
