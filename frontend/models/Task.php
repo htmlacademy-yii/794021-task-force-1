@@ -26,7 +26,7 @@ use Yii;
  * @property TaskCategory $category
  * @property City $city
  * @property User $contractor
- * @property ContractorsApplication[] $contractorsApplications
+ * @property ContractorApplication[] $contractorApplications
  * @property User $customer
  * @property Message[] $messages
  * @property Review[] $reviews
@@ -55,8 +55,8 @@ class Task extends \yii\db\ActiveRecord
             [['category_id', 'state_id', 'customer_id', 'contractor_id', 'city_id', 'budget'], 'integer'],
             [['latitude', 'longitude'], 'number'],
             [['due_date', 'datetime_created'], 'safe'],
-            [['title'], 'string', 'max' => 60],
-            [['text', 'address', 'address_comment'], 'string', 'max' => 255],
+            [['title', 'address', 'address_comment'], 'string', 'max' => 255],
+            [['text'], 'string', 'max' => 2000],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => TaskCategory::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => TaskState::className(), 'targetAttribute' => ['state_id' => 'id']],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['customer_id' => 'id']],
@@ -120,13 +120,13 @@ class Task extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[ContractorsApplications]].
+     * Gets query for [[ContractorApplications]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getContractorsApplications()
+    public function getContractorApplications()
     {
-        return $this->hasMany(ContractorsApplication::className(), ['task_id' => 'id']);
+        return $this->hasMany(ContractorApplication::className(), ['task_id' => 'id']);
     }
 
     /**

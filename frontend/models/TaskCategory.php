@@ -11,6 +11,8 @@ use Yii;
  * @property string $title
  * @property string|null $icon
  *
+ * @property ContractorOccupation[] $contractorOccupations
+ * @property User[] $contractors
  * @property Task[] $tasks
  */
 class TaskCategory extends \yii\db\ActiveRecord
@@ -46,6 +48,26 @@ class TaskCategory extends \yii\db\ActiveRecord
             'title' => 'Title',
             'icon' => 'Icon',
         ];
+    }
+
+    /**
+     * Gets query for [[ContractorOccupations]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getContractorOccupations()
+    {
+        return $this->hasMany(ContractorOccupation::className(), ['occupation_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[Contractors]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getContractors()
+    {
+        return $this->hasMany(User::className(), ['id' => 'contractor_id'])->viaTable('contractor_occupation', ['occupation_id' => 'id']);
     }
 
     /**

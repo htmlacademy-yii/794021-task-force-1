@@ -12,7 +12,7 @@ use Yii;
  * @property int $occupation_id
  *
  * @property User $contractor
- * @property Occupation $occupation
+ * @property TaskCategory $occupation
  */
 class ContractorOccupation extends \yii\db\ActiveRecord
 {
@@ -34,7 +34,7 @@ class ContractorOccupation extends \yii\db\ActiveRecord
             [['contractor_id', 'occupation_id'], 'integer'],
             [['contractor_id', 'occupation_id'], 'unique', 'targetAttribute' => ['contractor_id', 'occupation_id']],
             [['contractor_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['contractor_id' => 'id']],
-            [['occupation_id'], 'exist', 'skipOnError' => true, 'targetClass' => Occupation::className(), 'targetAttribute' => ['occupation_id' => 'id']],
+            [['occupation_id'], 'exist', 'skipOnError' => true, 'targetClass' => TaskCategory::className(), 'targetAttribute' => ['occupation_id' => 'id']],
         ];
     }
 
@@ -67,6 +67,6 @@ class ContractorOccupation extends \yii\db\ActiveRecord
      */
     public function getOccupation()
     {
-        return $this->hasOne(Occupation::className(), ['id' => 'occupation_id']);
+        return $this->hasOne(TaskCategory::className(), ['id' => 'occupation_id']);
     }
 }
