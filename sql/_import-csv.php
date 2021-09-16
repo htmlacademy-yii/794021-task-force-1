@@ -64,6 +64,7 @@ const SETTINGS = [
             'state_id' => STATE_ID_COUNT,
             'customer_id' => USERS_COUNT,
             'category_id' => TASK_CATEGORY_COUNT,
+            'contractor_id' => USERS_COUNT,
         ],
     ],
     'data/replies.csv' => [
