@@ -10,6 +10,7 @@ class TasksController extends Controller
     {
         $customerId = 3; // TODO: Take customer id from real data
         // TODO: check whether user is customer
+        // TODO: add descending sorting (from old to new tasks)
         $tasks = Task::find()
             ->with(['category'])
             ->where(['customer_id' => $customerId, 'state_id' => Task::STATE_NEW])
