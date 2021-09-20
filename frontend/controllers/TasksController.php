@@ -8,12 +8,10 @@ class TasksController extends Controller
 {
     public function actionIndex()
     {
-        $customerId = 3; // TODO: Take customer id from real data
-        // TODO: check whether user is customer
-        // TODO: add descending sorting (from old to new tasks)
         $tasks = Task::find()
             ->with(['category'])
-            ->where(['customer_id' => $customerId, 'state_id' => Task::STATE_NEW])
+            ->where(['state_id' => Task::STATE_NEW])
+            ->orderBy('datetime_created', 'desc')
             ->all();
         return $this->render('index', ['items' => $tasks]);
     }
