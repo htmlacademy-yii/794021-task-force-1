@@ -29,13 +29,14 @@ use Yii;
  * @property ContractorApplication[] $contractorApplications
  * @property User $customer
  * @property Message[] $messages
- * @property Review[] $reviews
+ * @property Review $review
  * @property TaskState $state
  * @property TaskFile[] $taskFiles
  */
 class Task extends \yii\db\ActiveRecord
 {
     const STATE_NEW = 1;
+    const STATE_DONE = 4;
 
     /**
      * {@inheritdoc}
@@ -150,13 +151,13 @@ class Task extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Reviews]].
+     * Gets query for [[Review]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getReviews()
+    public function getReview()
     {
-        return $this->hasMany(Review::className(), ['task_id' => 'id']);
+        return $this->hasOne(Review::className(), ['task_id' => 'id']);
     }
 
     /**

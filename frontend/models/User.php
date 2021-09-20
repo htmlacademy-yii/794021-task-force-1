@@ -36,8 +36,6 @@ use Yii;
  * @property FavoriteContractor[] $favoriteContractors0
  * @property Message[] $messages
  * @property TaskCategory[] $occupations
- * @property Review[] $reviews
- * @property Review[] $reviews0
  * @property Task[] $tasks
  * @property Task[] $tasks0
  */
@@ -188,31 +186,11 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Reviews]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getReviews()
-    {
-        return $this->hasMany(Review::className(), ['contractor_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Reviews0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getReviews0()
-    {
-        return $this->hasMany(Review::className(), ['customer_id' => 'id']);
-    }
-
-    /**
      * Gets query for [[Tasks]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTasks()
+    public function getTasks0()
     {
         return $this->hasMany(Task::className(), ['customer_id' => 'id']);
     }
@@ -222,7 +200,7 @@ class User extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTasks0()
+    public function getTasks()
     {
         return $this->hasMany(Task::className(), ['contractor_id' => 'id']);
     }
