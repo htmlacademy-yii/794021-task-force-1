@@ -21,6 +21,7 @@ class UsersController extends Controller
         ->select([
             '`user`.`id`',
             '`user`.`fullname`',
+            '`user`.`description`',
             '`user`.`website_last_action_datetime`',
             'COUNT(`task`.`contractor_id`) AS `doneTaskCount`',
             'COUNT(`review`.`task_id`) AS `reviewCount`',
