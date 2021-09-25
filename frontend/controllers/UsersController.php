@@ -22,6 +22,7 @@ class UsersController extends Controller
             '`user`.`id`',
             '`user`.`fullname`',
             '`user`.`description`',
+            '`user`.`avatar_file`',
             '`user`.`website_last_action_datetime`',
             'COUNT(`task`.`contractor_id`) AS `doneTaskCount`',
             'COUNT(`review`.`task_id`) AS `reviewCount`',

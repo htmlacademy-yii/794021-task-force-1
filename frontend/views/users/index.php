@@ -23,11 +23,12 @@
             <?php
                 $ratingDecimalString = (string)number_format((float)$item->rating, 2);
                 $ratingRounded = round((float)$item->rating);
+                $avatarFile = $item->avatar_file ? './img/' . $item->avatar_file : '';
             ?>
             <div class="content-view__feedback-card user__search-wrapper">
                 <div class="feedback-card__top">
                     <div class="user__search-icon">
-                        <a href="#"><img src="./img/man-glasses.jpg" width="65" height="65" alt="Аватар пользователя"></a>
+                        <a href="#"><img src="<?= $avatarFile ?>" width="65" height="65" alt="Аватар пользователя"></a>
                         <span><?= htmlspecialchars($item->doneTaskCount) ?> заданий</span>
                         <span><?= htmlspecialchars($item->reviewCount) ?> отзывов</span>
                     </div>
