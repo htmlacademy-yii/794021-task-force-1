@@ -20,6 +20,10 @@
             </div>
 
             <?php foreach($items as $item): ?>
+            <?php
+                $ratingInNumbers = number_format($item->rating, 2);
+                $ratingRounded = round((float)$item->rating);
+            ?>
             <div class="content-view__feedback-card user__search-wrapper">
                 <div class="feedback-card__top">
                     <div class="user__search-icon">
@@ -33,20 +37,20 @@
                         </p>
 
                         <?php for($i = 1; $i <= 5; $i++): ?>
-                            <span<?= $i > round((float)$item->rating) ? $htmlClassAdditionForDisabledStar : '' ?>>
+                            <span<?= $i > $ratingRounded ? $htmlClassAdditionForDisabledStar : '' ?>>
                             </span>
                         <?php endfor; ?>
 
-                        <b><?= htmlspecialchars(number_format($item->rating, 2)) ?></b>
+                        <b><?= htmlspecialchars($ratingInNumbers) ?></b>
                         <p class="user__search-content">
-                            <?= htmlspecialchars($item->description); ?>
+                            <?= htmlspecialchars($item->description) ?>
                         </p>
                     </div>
                     <span class="new-task__time">Был на сайте <?= htmlspecialchars($item->website_last_action_datetime) ?></span>
                 </div>
                 <div class="link-specialization user__search-link--bottom">
                     <?php foreach($item->occupations as $occupation): ?>
-                    <a href="#" class="link-regular"><?= htmlspecialchars($occupation->title); ?></a>
+                    <a href="#" class="link-regular"><?= htmlspecialchars($occupation->title) ?></a>
                     <?php endforeach; ?>
                 </div>
             </div>
