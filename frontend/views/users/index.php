@@ -1,3 +1,6 @@
+<?php
+    $htmlClassAdditionForDisabledStar = ' class="star-disabled"';
+?>
 <main class="page-main">
     <div class="main-container page-container">
         <section class="user__search">
@@ -21,20 +24,25 @@
                 <div class="feedback-card__top">
                     <div class="user__search-icon">
                         <a href="#"><img src="./img/man-glasses.jpg" width="65" height="65"></a>
-                        <span>17 заданий</span>
-                        <span>6 отзывов</span>
+                        <span><?= htmlspecialchars($item->doneTaskCount) ?> заданий</span>
+                        <span><?= htmlspecialchars($item->reviewCount) ?> отзывов</span>
                     </div>
                     <div class="feedback-card__top--name user__search-card">
                         <p class="link-name">
-                            <a href="#" class="link-regular"><?= htmlspecialchars($item->fullname); ?></a>
+                            <a href="#" class="link-regular"><?= htmlspecialchars($item->fullname) ?></a>
                         </p>
-                        <span></span><span></span><span></span><span></span><span class="star-disabled"></span>
-                        <b>4.25</b>
+
+                        <?php for($i = 1; $i <= 5; $i++): ?>
+                            <span<?= $i > round((float)$item->rating) ? $htmlClassAdditionForDisabledStar : '' ?>>
+                            </span>
+                        <?php endfor; ?>
+
+                        <b><?= htmlspecialchars(number_format($item->rating, 2)) ?></b>
                         <p class="user__search-content">
                             <?= htmlspecialchars($item->description); ?>
                         </p>
                     </div>
-                    <span class="new-task__time">Был на сайте <?= htmlspecialchars($item->website_last_action_datetime); ?></span>
+                    <span class="new-task__time">Был на сайте <?= htmlspecialchars($item->website_last_action_datetime) ?></span>
                 </div>
                 <div class="link-specialization user__search-link--bottom">
                     <?php foreach($item->occupations as $occupation): ?>
