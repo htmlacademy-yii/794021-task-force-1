@@ -156,16 +156,6 @@ class User extends \yii\db\ActiveRecord
      */
     public function getFavoriteContractors()
     {
-        return $this->hasMany(FavoriteContractor::className(), ['customer_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[FavoriteContractors0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFavoriteContractors0()
-    {
         return $this->hasMany(FavoriteContractor::className(), ['contractor_id' => 'id']);
     }
 
