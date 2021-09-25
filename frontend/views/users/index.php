@@ -21,7 +21,7 @@
 
             <?php foreach($items as $item): ?>
             <?php
-                $ratingInNumbers = number_format($item->rating, 2);
+                $ratingDecimalString = (string)number_format((float)$item->rating, 2);
                 $ratingRounded = round((float)$item->rating);
             ?>
             <div class="content-view__feedback-card user__search-wrapper">
@@ -41,7 +41,7 @@
                             </span>
                         <?php endfor; ?>
 
-                        <b><?= htmlspecialchars($ratingInNumbers) ?></b>
+                        <b><?= htmlspecialchars($ratingDecimalString) ?></b>
                         <p class="user__search-content">
                             <?= htmlspecialchars($item->description) ?>
                         </p>
