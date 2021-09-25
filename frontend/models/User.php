@@ -41,6 +41,10 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
+    public $doneTaskCount;
+    public $rating;
+    public $reviewCount;
+
     /**
      * {@inheritdoc}
      */
