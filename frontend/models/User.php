@@ -214,8 +214,6 @@ class User extends \yii\db\ActiveRecord
         $contractorsQuery = ContractorOccupation::find()->select('DISTINCT(contractor_id)');
 
         return self::find()
-            ->with('contractorOccupations')
-            ->with('tasks.review')
             ->select('*')
             ->addSelect([
                 'COUNT(task.contractor_id) AS doneTaskCount',
