@@ -215,12 +215,8 @@ class User extends \yii\db\ActiveRecord
         return self::find()
             ->with('contractorOccupations')
             ->with('tasks.review')
-            ->select([
-                '`user`.`id`',
-                '`user`.`fullname`',
-                '`user`.`description`',
-                '`user`.`avatar_file`',
-                '`user`.`website_last_action_datetime`',
+            ->select('*')
+            ->addSelect([
                 'COUNT(`task`.`contractor_id`) AS `doneTaskCount`',
                 'COUNT(`review`.`task_id`) AS `reviewCount`',
                 'AVG(`review`.`rating`) AS `rating`'
@@ -231,7 +227,7 @@ class User extends \yii\db\ActiveRecord
             ->andWhere(['task.state_id' => Task::STATE_DONE])
             ->andWhere(['user.id' => $contractors])
             ->andWhere(['user.hide_profile' => false])
-            ->groupBy('id')
+            ->groupBy('user.id')
             ->orderBy('user.datetime_created ASC')
             ->all();
     }
