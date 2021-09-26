@@ -211,7 +211,8 @@ class User extends \yii\db\ActiveRecord
      */
     public static function getAvailableContractors(): array
     {
-        $contractors = (new Query())->select('contractor_id')->from('contractor_occupation')->groupBy('contractor_id')->column();
+        $contractorsQuery = ContractorOccupation::find()->select('DISTINCT(contractor_id)');
+
         return self::find()
             ->with('contractorOccupations')
             ->with('tasks.review')
@@ -221,11 +222,11 @@ class User extends \yii\db\ActiveRecord
                 'COUNT(`review`.`task_id`) AS `reviewCount`',
                 'AVG(`review`.`rating`) AS `rating`'
             ])
+            ->rightJoin(['occupation' => $contractorsQuery], 'user.id = occupation.contractor_id')
             ->leftJoin('task', 'task.contractor_id = user.id')
             ->leftJoin('review', 'task.id = review.task_id')
 
             ->andWhere(['task.state_id' => Task::STATE_DONE])
-            ->andWhere(['user.id' => $contractors])
             ->andWhere(['user.hide_profile' => false])
             ->groupBy('user.id')
             ->orderBy('user.datetime_created ASC')
