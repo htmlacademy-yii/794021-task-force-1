@@ -218,9 +218,9 @@ class User extends \yii\db\ActiveRecord
             ->with('tasks.review')
             ->select('*')
             ->addSelect([
-                'COUNT(`task`.`contractor_id`) AS `doneTaskCount`',
-                'COUNT(`review`.`task_id`) AS `reviewCount`',
-                'AVG(`review`.`rating`) AS `rating`'
+                'COUNT(task.contractor_id) AS doneTaskCount',
+                'COUNT(review.task_id) AS reviewCount',
+                'AVG(review.rating) AS rating'
             ])
             ->rightJoin(['occupation' => $contractorsQuery], 'user.id = occupation.contractor_id')
             ->leftJoin('task', 'task.contractor_id = user.id')
