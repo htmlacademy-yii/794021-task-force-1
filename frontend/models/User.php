@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "user".
@@ -38,6 +39,10 @@ use Yii;
  * @property TaskCategory[] $occupations
  * @property Task[] $tasks
  * @property Task[] $tasks0
+ *
+ * @property int $doneTaskCount
+ * @property float $rating;
+ * @property int $reviewCount;
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -197,5 +202,37 @@ class User extends \yii\db\ActiveRecord
     public function getTasks()
     {
         return $this->hasMany(Task::className(), ['contractor_id' => 'id']);
+    }
+
+    /**
+     * Gets list of contractors
+     *
+     * @return array
+     */
+    public static function getAvailableContractors(): array
+    {
+        $contractors = (new Query())->select('contractor_id')->from('contractor_occupation')->groupBy('contractor_id')->column();
+        return self::find()
+            ->with('contractorOccupations')
+            ->with('tasks.review')
+            ->select([
+                '`user`.`id`',
+                '`user`.`fullname`',
+                '`user`.`description`',
+                '`user`.`avatar_file`',
+                '`user`.`website_last_action_datetime`',
+                'COUNT(`task`.`contractor_id`) AS `doneTaskCount`',
+                'COUNT(`review`.`task_id`) AS `reviewCount`',
+                'AVG(`review`.`rating`) AS `rating`'
+            ])
+            ->leftJoin('task', 'task.contractor_id = user.id')
+            ->leftJoin('review', 'task.id = review.task_id')
+
+            ->andWhere(['task.state_id' => Task::STATE_DONE])
+            ->andWhere(['user.id' => $contractors])
+            ->andWhere(['user.hide_profile' => false])
+            ->groupBy('id')
+            ->orderBy('user.datetime_created ASC')
+            ->all();
     }
 }
