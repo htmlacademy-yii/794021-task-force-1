@@ -179,4 +179,18 @@ class Task extends \yii\db\ActiveRecord
     {
         return $this->hasMany(TaskFile::className(), ['task_id' => 'id']);
     }
+
+    /**
+     * Gets task list.
+     *
+     * @return array
+     */
+    public static function getTasks():array
+    {
+        return self::find()
+            ->with('category')
+            ->where(['state_id' => Task::STATE_NEW])
+            ->orderBy('datetime_created', 'desc')
+            ->all();
+    }
 }

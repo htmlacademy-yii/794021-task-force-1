@@ -8,11 +8,11 @@ class TasksController extends Controller
 {
     public function actionIndex()
     {
-        $tasks = Task::find()
-            ->with(['category'])
-            ->where(['state_id' => Task::STATE_NEW])
-            ->orderBy('datetime_created', 'desc')
-            ->all();
-        return $this->render('index', ['items' => $tasks]);
+        return $this->render(
+            'index',
+            [
+                'items' => Task::getTasks()
+            ]
+        );
     }
 }
