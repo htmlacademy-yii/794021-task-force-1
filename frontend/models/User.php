@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use yii\db\Query;
 
 /**
  * This is the model class for table "user".
@@ -36,13 +37,19 @@ use Yii;
  * @property FavoriteContractor[] $favoriteContractors0
  * @property Message[] $messages
  * @property TaskCategory[] $occupations
- * @property Review[] $reviews
- * @property Review[] $reviews0
  * @property Task[] $tasks
  * @property Task[] $tasks0
+ *
+ * @property int $doneTaskCount
+ * @property float $rating;
+ * @property int $reviewCount;
  */
 class User extends \yii\db\ActiveRecord
 {
+    public $doneTaskCount;
+    public $rating;
+    public $reviewCount;
+
     /**
      * {@inheritdoc}
      */
@@ -154,16 +161,6 @@ class User extends \yii\db\ActiveRecord
      */
     public function getFavoriteContractors()
     {
-        return $this->hasMany(FavoriteContractor::className(), ['customer_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[FavoriteContractors0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getFavoriteContractors0()
-    {
         return $this->hasMany(FavoriteContractor::className(), ['contractor_id' => 'id']);
     }
 
@@ -188,31 +185,11 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Reviews]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getReviews()
-    {
-        return $this->hasMany(Review::className(), ['contractor_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Reviews0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getReviews0()
-    {
-        return $this->hasMany(Review::className(), ['customer_id' => 'id']);
-    }
-
-    /**
      * Gets query for [[Tasks]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTasks()
+    public function getTasks0()
     {
         return $this->hasMany(Task::className(), ['customer_id' => 'id']);
     }
@@ -222,8 +199,35 @@ class User extends \yii\db\ActiveRecord
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getTasks0()
+    public function getTasks()
     {
         return $this->hasMany(Task::className(), ['contractor_id' => 'id']);
+    }
+
+    /**
+     * Gets list of contractors
+     *
+     * @return array
+     */
+    public static function getAvailableContractors(): array
+    {
+        $contractorsQuery = ContractorOccupation::find()->select('DISTINCT(contractor_id)');
+
+        return self::find()
+            ->select('*')
+            ->addSelect([
+                'COUNT(task.contractor_id) AS doneTaskCount',
+                'COUNT(review.task_id) AS reviewCount',
+                'AVG(review.rating) AS rating'
+            ])
+            ->rightJoin(['occupation' => $contractorsQuery], 'user.id = occupation.contractor_id')
+            ->leftJoin('task', 'task.contractor_id = user.id')
+            ->leftJoin('review', 'task.id = review.task_id')
+
+            ->andWhere(['task.state_id' => Task::STATE_DONE])
+            ->andWhere(['user.hide_profile' => false])
+            ->groupBy('user.id')
+            ->orderBy('user.datetime_created ASC')
+            ->all();
     }
 }

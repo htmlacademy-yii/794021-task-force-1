@@ -64,6 +64,7 @@ const SETTINGS = [
             'state_id' => STATE_ID_COUNT,
             'customer_id' => USERS_COUNT,
             'category_id' => TASK_CATEGORY_COUNT,
+            'contractor_id' => USERS_COUNT,
         ],
     ],
     'data/replies.csv' => [
@@ -83,9 +84,7 @@ const SETTINGS = [
         'output' => 'sql/7_occupation.sql',
         'table' => 'contractor_occupation',
         'fieldsMap' => [],
-        'fakeItems' => [
-            'occupation_id' => TASK_CATEGORY_COUNT,
-        ],
+        'fakeItems' => [],
     ],
     'data/_favorite.csv' => [
         'output' => 'sql/8_favorite.sql',

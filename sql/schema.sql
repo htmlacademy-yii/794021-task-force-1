@@ -81,12 +81,12 @@ CREATE TABLE task (
     state_id INT NOT NULL,
       FOREIGN KEY (state_id) REFERENCES task_state(id),
     customer_id INT NOT NULL,
-      FOREIGN KEY (customer_id) REFERENCES user (id),
+      FOREIGN KEY (customer_id) REFERENCES user(id),
     contractor_id INT DEFAULT NULL,
-      FOREIGN KEY (contractor_id) REFERENCES user (id),
+      FOREIGN KEY (contractor_id) REFERENCES user(id),
 
     city_id INT DEFAULT NULL,
-      FOREIGN KEY (city_id) REFERENCES city (id),
+      FOREIGN KEY (city_id) REFERENCES city(id),
     address VARCHAR(255) DEFAULT NULL,
     latitude DECIMAL(10, 8) DEFAULT NULL,
     longitude DECIMAL(11, 8) DEFAULT NULL,
@@ -108,22 +108,19 @@ CREATE TABLE contractor_application (
       FOREIGN KEY (applicant_id) REFERENCES user(id),
     budget INT NOT NULL,
     text VARCHAR(2000),
-    datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    datetime_created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    FULLTEXT (text)
 );
 
 CREATE TABLE review (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    task_id INT NOT NULL,
+    task_id INT NOT NULL UNIQUE,
       FOREIGN KEY (task_id) REFERENCES task(id),
-    contractor_id int NOT NULL,
-      FOREIGN KEY (contractor_id) REFERENCES user(id),
-    customer_id int NOT NULL,
-      FOREIGN KEY (customer_id) REFERENCES user(id),
     rating int DEFAULT NULL,
-    text VARCHAR(200) NOT NULL UNIQUE,
+    text VARCHAR(1000) NOT NULL,
 
-    FULLTEXT(text),
-    UNIQUE KEY (task_id, contractor_id, customer_id)
+    FULLTEXT(text)
 );
 
 CREATE TABLE message (
